@@ -1,0 +1,35 @@
+#root {
+  position: relative;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+:root {
+  --font-family: "Manrope", sans-serif;
+  --second-family: "Inter 18pt", sans-serif;
+
+  --color-main: #101929;
+
+  --color-grey: #8d929a;
+  --color-gray-light: #dadde1;
+
+  --color-badges: #f2f4f7;
+  --color-inputs: #f7f7f7;
+  --color-white: #ffffff;
+
+  --color-blue-button: #3470ff;
+  --color-blue-hover: #0b44cd;
+}
+
+html {
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+}
+
+.icon {
+  display: inline-block;
+
+  stroke-width: 0;
+  stroke: currentColor;
+  fill: var(--color-gray-light);
+}
