@@ -1,12 +1,12 @@
 #root {
   position: relative;
-  max-width: 100%;
+  width: 100%;
   margin: 0 auto;
 }
 
 :root {
   --font-family: "Manrope", sans-serif;
-  --second-family: "Inter 18pt", sans-serif;
+  --second-family: "Inter", sans-serif;
 
   --color-main: #101929;
 
@@ -24,6 +24,11 @@
 html {
   scroll-behavior: smooth;
   scrollbar-width: thin;
+}
+body {
+  max-width: 1440px;
+  width: 100%;
+  margin: 0 auto;
 }
 
 .icon {

@@ -1,11 +1,18 @@
+import { lazy } from "react";
 import "./App.css";
-// import icons from "./assets/sprite.svg";
-import Header from "./components/Header/Header.jsx";
+
+import { Route, Routes } from "react-router-dom";
+
+const HomePage = lazy(() => import("./pages/HomePage/HomePage.jsx"));
+const CarPage = lazy(() => import("./pages/CarPage/CarPage.jsx"));
 
 function App() {
   return (
     <>
-      <Header />
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/cars" element={<CarPage />} />
+      </Routes>
     </>
   );
 }

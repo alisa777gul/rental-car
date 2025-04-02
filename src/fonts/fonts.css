@@ -1,33 +1,30 @@
 @font-face {
-  font-family: "Inter 18pt";
-  src: url("Inter18pt-Medium.woff2") format("woff2"),
-    url("Inter18pt-Medium.woff") format("woff");
+  font-family: "Inter";
+  src: url("./Inter-Medium.woff2") format("woff2");
   font-weight: 500;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: "Inter 18pt";
-  src: url("Inter18pt-SemiBold.woff2") format("woff2"),
-    url("Inter18pt-SemiBold.woff") format("woff");
+  font-family: "Inter";
+  src: url("./Inter-SemiBold.woff2") format("woff2");
   font-weight: 600;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: "Inter 18pt";
-  src: url("Inter18pt-Regular.woff2") format("woff2"),
-    url("Inter18pt-Regular.woff") format("woff");
+  font-family: "Inter";
+  src: url("./Inter-Regular.woff2") format("woff2");
   font-weight: normal;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: "Manrope";
-  src: url("Manrope-Bold.woff2") format("woff2"),
-    url("Manrope-Bold.woff") format("woff");
+  src: url("./Manrope-Bold.woff2") format("woff2"),
+    url("./Manrope-Bold.woff") format("woff");
   font-weight: bold;
   font-style: normal;
   font-display: swap;
@@ -35,8 +32,8 @@
 
 @font-face {
   font-family: "Manrope";
-  src: url("Manrope-Medium.woff2") format("woff2"),
-    url("Manrope-Medium.woff") format("woff");
+  src: url("./Manrope-Medium.woff2") format("woff2"),
+    url("./Manrope-Medium.woff") format("woff");
   font-weight: 500;
   font-style: normal;
   font-display: swap;
@@ -44,8 +41,8 @@
 
 @font-face {
   font-family: "Manrope";
-  src: url("Manrope-SemiBold.woff2") format("woff2"),
-    url("Manrope-SemiBold.woff") format("woff");
+  src: url("./Manrope-SemiBold.woff2") format("woff2"),
+    url("./Manrope-SemiBold.woff") format("woff");
   font-weight: 600;
   font-style: normal;
   font-display: swap;
@@ -53,8 +50,8 @@
 
 @font-face {
   font-family: "Manrope";
-  src: url("Manrope-Regular.woff2") format("woff2"),
-    url("Manrope-Regular.woff") format("woff");
+  src: url("./Manrope-Regular.woff2") format("woff2"),
+    url("./Manrope-Regular.woff") format("woff");
   font-weight: normal;
   font-style: normal;
   font-display: swap;

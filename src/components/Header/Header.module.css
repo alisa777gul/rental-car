@@ -1,4 +1,46 @@
-.text {
-  font-family: var(--second-family);
-  font-weight: 400;
+.header {
+  padding: 24px 120px;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1440px;
+  border-bottom: 1px solid var(--color-badges);
+  background-color: var(--color-badges);
+  margin-bottom: 4px;
+}
+
+.logo {
+  width: 104px;
+  height: 16px;
+  display: block;
+}
+
+.navigation {
+  display: flex;
+  gap: 32px;
+  justify-content: center;
+  align-items: center;
+}
+
+.link {
+  display: inline-block;
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.25;
+  text-align: center;
+  color: var(--color-main);
+  min-width: 44px;
+  transition: color 0.4s ease-out;
+}
+
+.link:hover,
+.link:focus {
+  color: var(--color-blue-hover);
+}
+
+.active {
+  color: var(--color-blue-hover);
 }
