@@ -1,0 +1,120 @@
+.card {
+  max-width: 276px;
+  min-height: 424px;
+}
+.photo {
+  border-radius: 14px;
+  background: linear-gradient(
+    180deg,
+    rgba(18, 20, 23, 0.5) 0%,
+    rgba(18, 20, 23, 0.5) 100%
+  );
+  width: 276px;
+  height: 268px;
+}
+.icon {
+  z-index: 100;
+  fill: var(--color-badges);
+  transition: fill 0.4s ease-out;
+  cursor: pointer;
+}
+.like {
+  position: absolute;
+  right: 16px;
+  top: 16px;
+  max-width: 16px;
+  max-height: 16px;
+  background-color: transparent;
+  cursor: default;
+}
+
+.imgCont {
+  position: relative;
+
+  max-width: 276px;
+  margin-bottom: 16px;
+}
+
+.nameNprice {
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.25;
+  color: var(--color-main);
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 8px;
+}
+
+.model {
+  color: var(--color-blue-button);
+}
+.price {
+  margin-left: auto;
+}
+
+.characteristics {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 4px;
+  min-height: 40px;
+  margin-bottom: 28px;
+}
+
+.firstLine,
+.secondLine {
+  max-height: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.elem {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1.33333;
+  color: var(--color-grey);
+}
+
+.elem::after {
+  content: "";
+  display: inline-block;
+
+  width: 1px;
+  height: 16px;
+  background-color: var(--color-gray-light);
+  margin-left: 6px;
+  margin-right: 6px;
+}
+
+.secondLine .elem:last-child::after {
+  display: none;
+}
+
+.readMore {
+  display: inline-block;
+  border-radius: 12px;
+  padding: 12px 97px;
+  font-family: var(--font-family);
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 1.25;
+  color: var(--color-white);
+  background-color: var(--color-blue-button);
+  transition: background-color 0.4s ease-out;
+}
+
+.readMore:hover,
+.readMore:focus {
+  background-color: var(--color-blue-hover);
+}
+
+.like svg:hover,
+.like svg:focus {
+  fill: var(--color-blue-button);
+}
