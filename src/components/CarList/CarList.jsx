@@ -1,26 +1,35 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { fetchCars } from "../../redux/cars/operations/fetchCars";
+import {
+  selectCarList,
+  selectCurrentPage,
+  selectFilters,
+} from "../../redux/cars/selectors";
 import CarCard from "../CarCard/CarCard";
+import LoadMoreBtn from "../LoadMoreBtn/LoadMoreBtn";
 import styles from "./CarList.module.css";
-import { getAllCars } from "../../utils/getAllCars";
 
 export default function CarList() {
-  const [cars, setCars] = useState([]);
+  const dispatch = useDispatch();
+  const cars = useSelector(selectCarList);
+
+  const page = useSelector(selectCurrentPage);
+  const filters = useSelector(selectFilters);
 
   useEffect(() => {
-    async function fetchCars() {
-      const data = await getAllCars();
-      setCars(data);
-    }
-    fetchCars();
-  }, []);
+    dispatch(fetchCars({ page }));
+  }, [dispatch, page]);
 
   return (
-    <ul className={styles.list}>
-      {cars.map((car) => (
-        <li key={car.id}>
-          <CarCard car={car} />
-        </li>
-      ))}
-    </ul>
+    <div>
+      <ul className={styles.list}>
+        {cars.map((car) => (
+          <li key={car.id}>
+            <CarCard car={car} />
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 }
