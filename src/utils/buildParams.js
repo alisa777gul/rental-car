@@ -1,11 +1,10 @@
+/* eslint-disable no-unused-vars */
 export const buildSearchParams = (paramsObj) => {
-  const result = {};
-
-  Object.entries(paramsObj).forEach(([key, value]) => {
-    if (value !== undefined && value !== null && value !== "") {
-      result[key] = value.toString();
-    }
-  });
-
-  return result;
+  return Object.fromEntries(
+    Object.entries(paramsObj)
+      .filter(
+        ([key, value]) => value !== undefined && value !== null && value !== ""
+      )
+      .map(([key, value]) => [key, value.toString()])
+  );
 };
