@@ -15,7 +15,7 @@ export default function SingleCar() {
   const car = useSelector(selectSingleCar);
   const city = extractCity(car?.address);
   const country = extractCountry(car?.address);
-  const carId = car.id.slice(0, 7);
+  const carId = car?.id.slice(0, 7);
 
   useEffect(() => {
     dispatch(fetchCarById(id));
