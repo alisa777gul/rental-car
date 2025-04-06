@@ -9,6 +9,8 @@ import {
 } from "../../redux/cars/selectors";
 import { useSearchParams } from "react-router-dom";
 import { setPage } from "../../redux/cars/slice";
+import { fetchCars } from "../../redux/cars/operations/fetchCars";
+import { buildSearchParams } from "../../utils/buildParams";
 
 export default function LoadMoreBtn() {
   const page = useSelector(selectCurrentPage);
@@ -19,29 +21,17 @@ export default function LoadMoreBtn() {
   const cars = useSelector(selectCarList);
   const totalCars = useSelector(selectTotalCars);
 
-  const buildSearchParams = (paramsObj) => {
-    return Object.entries(paramsObj).reduce((result, [key, value]) => {
-      if (value) {
-        result[key] = value.toString();
-      }
-      return result;
-    }, {});
-  };
-
-  // Hide button when there are no more pages
   if (page >= totalPages || cars.length >= totalCars) {
     return loading ? <p className={styles.loading}>Loading...</p> : null;
   }
 
-  const handleLoadMore = () => {
-    const nextPage = Number(page) + 1;
-    const paramsObject = {
-      ...Object.fromEntries(searchParams.entries()),
-      page: nextPage, // Устанавливаем следующую страницу
-    };
+  const handleLoadMore = async () => {
+    const params = Object.fromEntries(searchParams.entries());
 
-    setSearchParams(buildSearchParams(paramsObject)); // Обновляем параметры в URL
-    dispatch(setPage(nextPage)); // Обновляем текущую страницу в Redux
+    setSearchParams(buildSearchParams(params));
+    await dispatch(
+      fetchCars({ ...params, limit: 12, page: Number(page) + 1 })
+    ).unwrap();
   };
 
   return (

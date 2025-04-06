@@ -1,14 +1,9 @@
 import styles from "./CarCard.module.css";
 import icons from "../../assets/sprite.svg";
 import { Link } from "react-router-dom";
+import { formatNumber } from "../../utils/formatNumber";
 
 export default function CarCard({ car }) {
-  const formatNumber = (number) => {
-    return new Intl.NumberFormat("en-US", { useGrouping: true })
-      .format(number)
-      .replace(/,/g, " ");
-  };
-
   return (
     <div className={styles.card}>
       <div className={styles.imgCont}>

@@ -6,20 +6,14 @@ import { Formik } from "formik";
 import { useSearchParams } from "react-router-dom";
 import { setFilter } from "../../redux/filters/slice";
 import styles from "./FilterForm.module.css";
+import { fetchCars } from "../../redux/cars/operations/fetchCars";
+import { buildSearchParams } from "../../utils/buildParams";
 
 const FilterForm = () => {
   const [brands, setBrands] = useState([]);
+  const prices = Array.from({ length: 17 }, (_, i) => (i + 3) * 10);
   const dispatch = useDispatch();
   const [searchParams, setSearchParams] = useSearchParams();
-  const prices = Array.from({ length: 17 }, (_, i) => (i + 3) * 10);
-  const buildSearchParams = (paramsObj) => {
-    return Object.entries(paramsObj).reduce((result, [key, value]) => {
-      if (value) {
-        result[key] = value.toString();
-      }
-      return result;
-    }, {});
-  };
 
   useEffect(() => {
     const fetchBrandData = async () => {
@@ -34,44 +28,33 @@ const FilterForm = () => {
     fetchBrandData();
   }, [dispatch, searchParams]);
 
-  useEffect(() => {
-    const params = Object.fromEntries(searchParams.entries());
-
-    // If there are no filters, reset everything
-    if (Object.keys(params).length === 0 || !params.page) {
-      setSearchParams({ page: "1" }); // Force page to 1
-      dispatch(setPage(1)); // Set page in Redux to 1
-      dispatch(setFilter({})); // Reset filters
-    } else {
-      dispatch(setFilter(params));
-      dispatch(setPage(Number(params.page))); // Ensure we set a valid page
-    }
-  }, [dispatch, searchParams, setSearchParams]);
-
   const handleSubmit = (values, action) => {
     const price = values.rentalPrice;
     const brand = values.brand;
-    const min = Number(values.minMileage);
-    const max = Number(values.maxMileage);
+    const from = Number(values.minMileage);
+    const to = Number(values.maxMileage);
 
     const newParams = {
-      brand,
-      rentalPrice: price,
-      minMileage: min,
-      maxMileage: max,
-      page: "1",
-      limit: "12",
+      ...values,
+      page: 1,
+      limit: 12,
     };
 
     const newSearchParams = buildSearchParams(newParams);
-    setSearchParams(newSearchParams);
-    dispatch(clearState());
-    dispatch(setPage(1));
 
+    setSearchParams(buildSearchParams(values));
+    dispatch(clearState());
+    dispatch(fetchCars(newSearchParams));
     dispatch(setFilter(newSearchParams));
 
     action.resetForm();
   };
+
+  useEffect(() => {
+    if (searchParams) {
+      dispatch(setFilter(Object.fromEntries(searchParams.entries())));
+    }
+  }, [searchParams, dispatch]);
 
   return (
     <div className={styles.cont}>

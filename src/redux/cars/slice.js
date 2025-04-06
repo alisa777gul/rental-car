@@ -24,12 +24,13 @@ const carSlice = createSlice({
         state.error = null;
       })
       .addCase(fetchCars.fulfilled, (state, action) => {
-        const { cars, totalPages, totalCars } = action.payload;
+        const { cars, page, totalPages, totalCars } = action.payload;
         state.loading = false;
 
         state.carList = [...state.carList, ...cars];
         state.totalCars = totalCars;
         state.totalPages = totalPages;
+        state.page = page;
       })
 
       .addCase(fetchCarById.rejected, (state, action) => {
