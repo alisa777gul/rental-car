@@ -1,6 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-
+import "izitoast/dist/css/iziToast.min.css";
+import iziToast from "izitoast";
 axios.defaults.baseURL = "https://car-rental-api.goit.global/";
 
 export const fetchCars = createAsyncThunk(
@@ -13,9 +14,14 @@ export const fetchCars = createAsyncThunk(
       const response = await axios.get(`/cars`, {
         params: { brand, rentalPrice, minMileage, maxMileage, limit, page },
       });
-      console.log("Fetched cars response: ", response.data);
+
       return { ...response.data };
     } catch (error) {
+      iziToast.success({
+        title: "Error",
+        message: "Oops...Try again!",
+        position: "topRight",
+      });
       return thunkAPI.rejectWithValue(error.message);
     }
   }

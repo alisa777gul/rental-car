@@ -1,12 +1,33 @@
-# React + Vite
+##Rental Car
+Короткий опис
+Rental Car — це SPA-додаток для перегляду та бронювання автомобілів в оренду. Побудований за допомогою React, Redux і React Router, додаток дозволяє зручно шукати, переглядати деталі авто та додавати улюблені моделі. Використано Formik для роботи з формами та iziToast для повідомлень.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Основні функції
+Перегляд каталогу автомобілів
 
-Currently, two official plugins are available:
+Фільтрація за маркою, типом, ціною, пробігом тощо
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Детальний опис кожного авто
 
-## Expanding the ESLint configuration
+Додавання/видалення з обраного
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Валідація форм з Formik
+
+Повідомлення про події за допомогою iziToast
+
+Адаптивний дизайн
+
+Технології
+React
+
+Redux Toolkit
+
+React Router
+
+Formik
+
+iziToast
+
+Axios
+
+CSS Modules

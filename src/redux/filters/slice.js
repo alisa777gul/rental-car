@@ -6,7 +6,6 @@ const filterSlice = createSlice({
   initialState,
   reducers: {
     setFilter(state, { payload }) {
-      console.log("Setting filters: ", payload); // log filter values
       state.filters = {
         brand: payload?.brand || "",
         rentalPrice: payload?.rentalPrice || "",

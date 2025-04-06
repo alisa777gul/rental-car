@@ -28,9 +28,7 @@ export default function LoadMoreBtn() {
     const params = Object.fromEntries(searchParams.entries());
 
     setSearchParams(buildSearchParams(params));
-    await dispatch(
-      fetchCars({ ...params, limit: 12, page: Number(page) + 1 })
-    ).unwrap();
+    await dispatch(fetchCars({ ...params, limit: 12, page: Number(page) + 1 }));
   };
 
   return (

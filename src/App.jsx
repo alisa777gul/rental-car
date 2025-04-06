@@ -11,12 +11,11 @@ const CarPage = lazy(() => import("./pages/CarPage/CarPage.jsx"));
 function App() {
   return (
     <>
-      {" "}
       <Suspense fallback={<Loader />}>
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/cars" element={<CatalogPage />} />
-          <Route path="/cars/:id" element={<CarPage />} />
+          <Route path="/catalog" element={<CatalogPage />} />
+          <Route path="/catalog/:id" element={<CarPage />} />
         </Routes>
       </Suspense>
     </>

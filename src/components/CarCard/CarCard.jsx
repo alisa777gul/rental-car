@@ -68,7 +68,7 @@ export default function CarCard({ car }) {
           </div>
         </div>
       </div>
-      <Link to={`/cars/${car.id}`} className={styles.readMore}>
+      <Link to={`/catalog/${car.id}`} className={styles.readMore}>
         Read more
       </Link>
     </div>

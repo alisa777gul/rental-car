@@ -1,10 +1,18 @@
 import React from "react";
 import { Formik, Field, Form } from "formik";
 import styles from "./BookingForm.module.css";
+import "izitoast/dist/css/iziToast.min.css";
+import iziToast from "izitoast";
 
 const BookingForm = () => {
-  const handleSubmit = (values) => {
-    console.log("Form values:", values);
+  const handleSubmit = (values, action) => {
+    iziToast.success({
+      title: "Success",
+      message: "We will call you ASAP!",
+      position: "topRight",
+    });
+
+    action.resetForm();
   };
 
   return (

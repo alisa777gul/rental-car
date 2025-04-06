@@ -29,8 +29,14 @@ const FilterForm = () => {
     fetchBrandData();
   }, [dispatch, searchParams]);
 
+  useEffect(() => {
+    if (searchParams) {
+      dispatch(setFilter(Object.fromEntries(searchParams.entries())));
+    }
+  }, [searchParams, dispatch]);
+
   const handleSubmit = (values, action) => {
-    const price = values.rentalPrice;
+    const rentalPrice = values.rentalPrice;
     const brand = values.brand;
     const from = Number(values.minMileage);
     const to = Number(values.maxMileage);
@@ -50,12 +56,6 @@ const FilterForm = () => {
 
     action.resetForm();
   };
-
-  useEffect(() => {
-    if (searchParams) {
-      dispatch(setFilter(Object.fromEntries(searchParams.entries())));
-    }
-  }, [searchParams, dispatch]);
 
   return (
     <div className={styles.cont}>
@@ -79,9 +79,7 @@ const FilterForm = () => {
                 onChange={handleChange}
                 className={styles.brand}
               >
-                <option value="" disabled>
-                  Choose a brand
-                </option>
+                <option value="">Choose a brand</option>
                 {brands.map((brand) => (
                   <option key={brand} value={brand}>
                     {brand}
@@ -120,6 +118,7 @@ const FilterForm = () => {
                     value={values.minMileage}
                     onChange={handleChange}
                     className={styles.from}
+                    placeholder="From"
                   />
                 </div>
 
@@ -131,6 +130,7 @@ const FilterForm = () => {
                     value={values.maxMileage}
                     onChange={handleChange}
                     className={styles.to}
+                    placeholder="To"
                   />
                 </div>
               </div>
