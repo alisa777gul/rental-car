@@ -7,20 +7,21 @@ import { selectSingleCar } from "../../redux/cars/selectors";
 import { extractCity, extractCountry } from "../../utils/getCityAndCountry";
 import icons from "../../assets/sprite.svg";
 import { formatNumber } from "../../utils/formatNumber";
+import BookingForm from "../BookingForm/BookingForm";
 
 export default function SingleCar() {
   const dispatch = useDispatch();
   const { id } = useParams();
   const car = useSelector(selectSingleCar);
+  const city = extractCity(car?.address);
+  const country = extractCountry(car?.address);
+  const carId = car.id.slice(0, 7);
 
   useEffect(() => {
     dispatch(fetchCarById(id));
   }, [dispatch, id]);
 
   if (!car) return <p>No car data available.</p>;
-
-  const city = extractCity(car?.address);
-  const country = extractCountry(car?.address);
 
   return (
     <div className={styles.cont}>
@@ -30,61 +31,89 @@ export default function SingleCar() {
           alt={`${car?.brand}+${car?.model}`}
           className={styles.img}
         />
-        <form></form>
+        <BookingForm />
       </div>
+      <div className={styles.info}>
+        <div className={styles.mainInfo}>
+          <div className={styles.nameNid}>
+            <p className={styles.name}>
+              {car?.brand} {car?.model}, {car?.year}
+            </p>
+            <p className={styles.id}>Id: {carId}</p>
+          </div>
 
-      <div className={styles.mainInfo}>
-        <div className={styles.nameNid}>
-          <p className={styles.name}>
-            {car?.brand} {car?.model}, {car?.year}
-          </p>
-          <p className={styles.id}>Id: {car?.id}</p>
+          <div className={styles.locationNmileage}>
+            <p className={styles.location}>
+              <svg width={16} height={16}>
+                <use href={icons + "#icon-location"}></use>
+              </svg>
+              {city}, {country}
+            </p>
+            <p className={styles.mileage}>
+              {car?.mileage ? formatNumber(car?.mileage) : "N/A"} km
+            </p>
+          </div>
+          <p className={styles.price}>${car?.rentalPrice}</p>
+          <p className={styles.description}>{car?.description}</p>
         </div>
-
-        <div className={styles.locationNmileage}>
-          <p className={styles.location}>
-            <svg width={16} height={16}>
-              <use href={icons + "#icon-location"}></use>
-            </svg>
-            {city}, {country}
-          </p>
-          <p className={styles.mileage}>
-            {car?.mileage ? formatNumber(car?.mileage) : "N/A"} km
-          </p>
-        </div>
-        <p className={styles.price}>${car?.rentalPrice}</p>
-        <p className={styles.description}>{car?.description}</p>
-      </div>
-      <div className={styles.secInfo}>
-        <div className={styles.conditions}>
-          <p className={styles.rentalTitle}>Rental Conditions: </p>
-          <ul className={styles.condList}>
-            {car.rentalConditions.map((condition, index) => (
-              <li key={index}>
+        <div className={styles.secInfo}>
+          <div className={styles.conditions}>
+            <p className={styles.rentalTitle}>Rental Conditions: </p>
+            <ul className={styles.condList}>
+              {car.rentalConditions.map((condition, index) => (
+                <li key={index} className={styles.condition}>
+                  <svg width={16} height={16}>
+                    <use href={icons + "#icon-check-circle"}></use>
+                  </svg>
+                  {condition}
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className={styles.specifications}>
+            <p className={styles.specifTitle}>Car Specifications: </p>
+            <ul className={styles.specifList}>
+              <li className={styles.specification}>
                 <svg width={16} height={16}>
-                  <use href={icons + "#icon-check-circle"}></use>
+                  <use href={icons + "#icon-calendar"}></use>
                 </svg>
-                {condition}
+                Year: {car.year}
               </li>
-            ))}
-          </ul>
-        </div>
-        <div className={styles.specifications}>
-          <p className={styles.specifTitle}>Car Specifications: </p>
-          <ul className={styles.specifList}>
-            <li className={styles.specification}>
-              <svg width={16} height={16}>
-                <use href={icons + "#icon-calendar"}></use>
-              </svg>
-              Year: {car.year}
-            </li>
-            <li className={styles.specification}>
-              <svg width={16} height={16}>
-                <use href={icons + "#icon-car"}></use>
-              </svg>
-              Type: {car.type}
-            </li>
-          </ul>
+              <li className={styles.specification}>
+                <svg width={16} height={16}>
+                  <use href={icons + "#icon-car"}></use>
+                </svg>
+                Type: {car.type}
+              </li>{" "}
+              <li className={styles.specification}>
+                <svg width={16} height={16}>
+                  <use href={icons + "#icon-fuel"}></use>
+                </svg>
+                Fuel Consumption: {car.fuelConsumption}
+              </li>{" "}
+              <li className={styles.specification}>
+                <svg width={16} height={16}>
+                  <use href={icons + "#icon-gear"}></use>
+                </svg>
+                Engine Size: {car.engineSize}
+              </li>
+            </ul>
+          </div>
+          <div className={styles.accessories}>
+            <p className={styles.accessTitle}>
+              Accessories and functionalities:
+            </p>
+            <ul className={styles.accessList}>
+              {car.accessories.map((access, index) => (
+                <li key={index} className={styles.access}>
+                  <svg width={16} height={16}>
+                    <use href={icons + "#icon-check-circle"}></use>
+                  </svg>
+                  {access}
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </div>
     </div>

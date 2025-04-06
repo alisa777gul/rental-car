@@ -8,7 +8,6 @@ import {
   selectTotalCars,
 } from "../../redux/cars/selectors";
 import { useSearchParams } from "react-router-dom";
-import { setPage } from "../../redux/cars/slice";
 import { fetchCars } from "../../redux/cars/operations/fetchCars";
 import { buildSearchParams } from "../../utils/buildParams";
 

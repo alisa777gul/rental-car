@@ -2,8 +2,12 @@ import styles from "./CarCard.module.css";
 import icons from "../../assets/sprite.svg";
 import { Link } from "react-router-dom";
 import { formatNumber } from "../../utils/formatNumber";
+import { extractCity, extractCountry } from "../../utils/getCityAndCountry";
 
 export default function CarCard({ car }) {
+  const city = extractCity(car?.address);
+  const country = extractCountry(car?.address);
+
   return (
     <div className={styles.card}>
       <div className={styles.imgCont}>
@@ -28,8 +32,8 @@ export default function CarCard({ car }) {
       </div>
       <div className={styles.characteristics}>
         <div className={styles.firstLine}>
-          <div className={styles.elem}>Kiev</div>
-          <div className={styles.elem}>Ukraine</div>
+          <div className={styles.elem}>{city}</div>
+          <div className={styles.elem}>{country}</div>
           <div className={styles.elem}>{car.rentalCompany}</div>
         </div>
         <div className={styles.secondLine}>

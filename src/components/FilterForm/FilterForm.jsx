@@ -1,6 +1,7 @@
+/* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { clearState, setPage } from "../../redux/cars/slice";
+import { clearState } from "../../redux/cars/slice";
 import { fetchBrands } from "../../redux/cars/operations/fetchBrands";
 import { Formik } from "formik";
 import { useSearchParams } from "react-router-dom";
