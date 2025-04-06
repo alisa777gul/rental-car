@@ -44,7 +44,9 @@ export default function CarCard({ car }) {
           </div>
         </div>
       </div>
-      <Link className={styles.readMore}>Read more</Link>
+      <Link to={`/cars/${car.id}`} className={styles.readMore}>
+        Read more
+      </Link>
     </div>
   );
 }

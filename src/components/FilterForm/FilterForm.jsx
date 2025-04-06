@@ -5,6 +5,7 @@ import { fetchBrands } from "../../redux/cars/operations/fetchBrands";
 import { Formik } from "formik";
 import { useSearchParams } from "react-router-dom";
 import { setFilter } from "../../redux/filters/slice";
+import styles from "./FilterForm.module.css";
 
 const FilterForm = () => {
   const [brands, setBrands] = useState([]);
@@ -33,10 +34,19 @@ const FilterForm = () => {
     fetchBrandData();
   }, [dispatch, searchParams]);
 
-  // useEffect(() => {
-  //   const params = Object.fromEntries(searchParams.entries());
-  //   dispatch(setFilter(params));
-  // }, [dispatch, searchParams]);
+  useEffect(() => {
+    const params = Object.fromEntries(searchParams.entries());
+
+    // If there are no filters, reset everything
+    if (Object.keys(params).length === 0 || !params.page) {
+      setSearchParams({ page: "1" }); // Force page to 1
+      dispatch(setPage(1)); // Set page in Redux to 1
+      dispatch(setFilter({})); // Reset filters
+    } else {
+      dispatch(setFilter(params));
+      dispatch(setPage(Number(params.page))); // Ensure we set a valid page
+    }
+  }, [dispatch, searchParams, setSearchParams]);
 
   const handleSubmit = (values, action) => {
     const price = values.rentalPrice;
@@ -49,8 +59,8 @@ const FilterForm = () => {
       rentalPrice: price,
       minMileage: min,
       maxMileage: max,
-      page: 1,
-      limit: 12,
+      page: "1",
+      limit: "12",
     };
 
     const newSearchParams = buildSearchParams(newParams);
@@ -64,7 +74,7 @@ const FilterForm = () => {
   };
 
   return (
-    <div>
+    <div className={styles.cont}>
       <Formik
         initialValues={{
           brand: "",
@@ -75,14 +85,15 @@ const FilterForm = () => {
         onSubmit={handleSubmit}
       >
         {({ values, handleChange, handleSubmit, isSubmitting }) => (
-          <form onSubmit={handleSubmit}>
-            <div>
+          <form onSubmit={handleSubmit} className={styles.form}>
+            <div className={styles.brandDiv}>
               <label htmlFor="brand">Car brand</label>
               <select
                 name="brand"
                 id="brand"
                 value={values.brand}
                 onChange={handleChange}
+                className={styles.brand}
               >
                 <option value="" disabled>
                   Choose a brand
@@ -95,7 +106,7 @@ const FilterForm = () => {
               </select>
             </div>
 
-            <div>
+            <div className={styles.price}>
               <label htmlFor="rentalPrice">Price / 1 hour</label>
               <select
                 name="rentalPrice"
@@ -108,35 +119,43 @@ const FilterForm = () => {
                 </option>
                 {prices.map((price) => (
                   <option key={price} value={price}>
-                    {price} USD
+                    {price}
                   </option>
                 ))}
               </select>
             </div>
-
             <div>
-              <label htmlFor="minMileage">Mileage (From)</label>
-              <input
-                type="number"
-                name="minMileage"
-                id="minMileage"
-                value={values.minMileage}
-                onChange={handleChange}
-              />
+              <label htmlFor="mileage">Car Mileage</label>
+              <div className={styles.mileageRange}>
+                <div className={styles.from}>
+                  <label htmlFor="minMileage">From</label>
+                  <input
+                    type="number"
+                    name="minMileage"
+                    id="minMileage"
+                    value={values.minMileage}
+                    onChange={handleChange}
+                  />
+                </div>
+
+                <div className={styles.to}>
+                  <label htmlFor="maxMileage">To</label>
+                  <input
+                    type="number"
+                    name="maxMileage"
+                    id="maxMileage"
+                    value={values.maxMileage}
+                    onChange={handleChange}
+                  />
+                </div>
+              </div>
             </div>
 
-            <div>
-              <label htmlFor="maxMileage">Mileage (To)</label>
-              <input
-                type="number"
-                name="maxMileage"
-                id="maxMileage"
-                value={values.maxMileage}
-                onChange={handleChange}
-              />
-            </div>
-
-            <button type="submit" disabled={isSubmitting}>
+            <button
+              type="submit"
+              disabled={isSubmitting}
+              className={styles.btn}
+            >
               Search
             </button>
           </form>

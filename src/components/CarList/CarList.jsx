@@ -4,34 +4,36 @@ import { fetchCars } from "../../redux/cars/operations/fetchCars";
 import { selectCarList } from "../../redux/cars/selectors";
 import CarCard from "../CarCard/CarCard";
 import styles from "./CarList.module.css";
-
 import { useSearchParams } from "react-router-dom";
 import { clearState, setPage } from "../../redux/cars/slice";
 import { setFilter } from "../../redux/filters/slice";
-// import { selectFilters } from "../../redux/filters/selectors";
 
 export default function CarList() {
   const dispatch = useDispatch();
   const cars = useSelector(selectCarList);
   const [searchParams, setSearchParams] = useSearchParams();
-  // const filters = useSelector(selectFilters);
-  // const currentPage = useSelector(selectCurrentPage);
 
   useEffect(() => {
-    const page = searchParams.get("page");
+    // Если в URL нет параметров фильтров, сбрасываем все
+    const params = Object.fromEntries(searchParams.entries());
 
-    const newParams = page === 1;
-
-    setSearchParams(newParams);
+    if (Object.keys(params).length != 0 || params.page != "1") {
+      // Reset the state and set page to 1 if no filters are present in the URL
+      dispatch(clearState());
+      setSearchParams({ page: "1" }); // Force page 1 if filters are empty
+      dispatch(setPage(1)); // Set the page to 1 in the Redux state
+    }
   }, []);
-
-  // useEffect(() => {
-  //   dispatch(fetchCars({ limit: 12, page }));
-  // }, [dispatch, page]);
 
   useEffect(() => {
     const params = Object.fromEntries(searchParams.entries());
-    dispatch(fetchCars(params));
+
+    if (params) {
+      dispatch(fetchCars(params));
+    } else {
+      dispatch(setFilter({}));
+      dispatch(fetchCars({ page: 1 }));
+    }
   }, [dispatch, searchParams]);
 
   return (

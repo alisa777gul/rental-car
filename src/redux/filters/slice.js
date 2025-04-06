@@ -13,8 +13,6 @@ const filterSlice = createSlice({
         rentalPrice: payload?.rentalPrice || "",
         minMileage: payload?.minMileage || "",
         maxMileage: payload?.maxMileage || "",
-        page: 1,
-        limit: payload?.limit || 12,
       };
     },
   },

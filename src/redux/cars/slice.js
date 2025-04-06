@@ -2,6 +2,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { initialState } from "./initialState.js";
 import { fetchCars } from "./operations/fetchCars.js";
+import { fetchCarById } from "./operations/fetchCarById.js";
 
 const carSlice = createSlice({
   name: "cars",
@@ -29,6 +30,20 @@ const carSlice = createSlice({
         state.carList = [...state.carList, ...cars];
         state.totalCars = totalCars;
         state.totalPages = totalPages;
+      })
+
+      .addCase(fetchCarById.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+      .addCase(fetchCarById.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(fetchCarById.fulfilled, (state, action) => {
+        state.loading = false;
+
+        state.singleCar = action.payload;
       })
 
       .addCase(fetchCars.rejected, (state, action) => {

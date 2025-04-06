@@ -32,7 +32,7 @@ export const selectError = createSelector(
   (carsState) => carsState.error
 );
 
-export const selectFilterType = createSelector(
+export const selectSingleCar = createSelector(
   selectCars,
-  (carsState) => carsState.filters.type
+  (carsState) => carsState.singleCar
 );

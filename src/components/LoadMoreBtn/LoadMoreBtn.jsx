@@ -1,15 +1,13 @@
 import { useDispatch, useSelector } from "react-redux";
 import styles from "./LoadMoreBtn.module.css";
 import {
-  selectCarList,
   selectCurrentPage,
-  selectLoading,
-  selectTotalCars,
   selectTotalPages,
+  selectLoading,
+  selectCarList,
+  selectTotalCars,
 } from "../../redux/cars/selectors";
-
 import { useSearchParams } from "react-router-dom";
-
 import { setPage } from "../../redux/cars/slice";
 
 export default function LoadMoreBtn() {
@@ -30,37 +28,25 @@ export default function LoadMoreBtn() {
     }, {});
   };
 
+  // Hide button when there are no more pages
   if (page >= totalPages || cars.length >= totalCars) {
-    if (loading) {
-      return <p className={styles.loading}>Loading</p>;
-    }
-    return null;
+    return loading ? <p className={styles.loading}>Loading...</p> : null;
   }
 
-  const handleLoadMore = async () => {
+  const handleLoadMore = () => {
     const nextPage = Number(page) + 1;
     const paramsObject = {
       ...Object.fromEntries(searchParams.entries()),
-      page: nextPage,
+      page: nextPage, // Устанавливаем следующую страницу
     };
 
-    setSearchParams(buildSearchParams(paramsObject));
-    dispatch(setPage(nextPage));
-    window.scrollBy({
-      top: 416,
-      behavior: "smooth",
-    });
+    setSearchParams(buildSearchParams(paramsObject)); // Обновляем параметры в URL
+    dispatch(setPage(nextPage)); // Обновляем текущую страницу в Redux
   };
 
   return (
-    <>
-      {loading ? (
-        <p className={styles.loading}>Loading</p>
-      ) : (
-        <button type="button" className={styles.btn} onClick={handleLoadMore}>
-          Load more
-        </button>
-      )}
-    </>
+    <button type="button" className={styles.btn} onClick={handleLoadMore}>
+      {loading ? "Loading..." : "Load more"}
+    </button>
   );
 }

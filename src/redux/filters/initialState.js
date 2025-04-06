@@ -3,6 +3,4 @@ export const initialState = {
   rentalPrice: "",
   minMileage: "",
   maxMileage: "",
-  limit: null,
-  page: "1",
 };
