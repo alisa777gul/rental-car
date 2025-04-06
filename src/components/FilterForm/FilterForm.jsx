@@ -1,12 +1,24 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { setFilters } from "../../redux/cars/slice"; // Assuming setFilters action updates filters in Redux
+import { clearState, setPage } from "../../redux/cars/slice";
 import { fetchBrands } from "../../redux/cars/operations/fetchBrands";
 import { Formik } from "formik";
+import { useSearchParams } from "react-router-dom";
+import { setFilter } from "../../redux/filters/slice";
 
 const FilterForm = () => {
   const [brands, setBrands] = useState([]);
   const dispatch = useDispatch();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const prices = Array.from({ length: 17 }, (_, i) => (i + 3) * 10);
+  const buildSearchParams = (paramsObj) => {
+    return Object.entries(paramsObj).reduce((result, [key, value]) => {
+      if (value) {
+        result[key] = value.toString();
+      }
+      return result;
+    }, {});
+  };
 
   useEffect(() => {
     const fetchBrandData = async () => {
@@ -14,21 +26,41 @@ const FilterForm = () => {
         const data = await fetchBrands();
         setBrands(data);
       } catch (err) {
-        console.log(err);
+        console.error("Error fetching brands: ", err);
       }
     };
 
     fetchBrandData();
-  }, []);
+  }, [dispatch, searchParams]);
 
-  const prices = [];
+  // useEffect(() => {
+  //   const params = Object.fromEntries(searchParams.entries());
+  //   dispatch(setFilter(params));
+  // }, [dispatch, searchParams]);
 
-  for (let i = 30; i < 200; i += 10) {
-    prices.push(i);
-  }
+  const handleSubmit = (values, action) => {
+    const price = values.rentalPrice;
+    const brand = values.brand;
+    const min = Number(values.minMileage);
+    const max = Number(values.maxMileage);
 
-  const handleSubmit = (values) => {
-    dispatch(setFilters(values));
+    const newParams = {
+      brand,
+      rentalPrice: price,
+      minMileage: min,
+      maxMileage: max,
+      page: 1,
+      limit: 12,
+    };
+
+    const newSearchParams = buildSearchParams(newParams);
+    setSearchParams(newSearchParams);
+    dispatch(clearState());
+    dispatch(setPage(1));
+
+    dispatch(setFilter(newSearchParams));
+
+    action.resetForm();
   };
 
   return (
@@ -36,7 +68,7 @@ const FilterForm = () => {
       <Formik
         initialValues={{
           brand: "",
-          price: "",
+          rentalPrice: "",
           minMileage: "",
           maxMileage: "",
         }}
@@ -52,7 +84,9 @@ const FilterForm = () => {
                 value={values.brand}
                 onChange={handleChange}
               >
-                <option value="">Choose a brand</option>
+                <option value="" disabled>
+                  Choose a brand
+                </option>
                 {brands.map((brand) => (
                   <option key={brand} value={brand}>
                     {brand}
@@ -62,17 +96,19 @@ const FilterForm = () => {
             </div>
 
             <div>
-              <label htmlFor="price">Price / 1 hour</label>
+              <label htmlFor="rentalPrice">Price / 1 hour</label>
               <select
-                name="price"
-                id="price"
-                value={values.price}
+                name="rentalPrice"
+                id="rentalPrice"
+                value={values.rentalPrice}
                 onChange={handleChange}
               >
-                <option value="">Choose a price</option>
+                <option value="" defaultValue={0}>
+                  Choose a price
+                </option>
                 {prices.map((price) => (
                   <option key={price} value={price}>
-                    {price}
+                    {price} USD
                   </option>
                 ))}
               </select>
@@ -109,4 +145,5 @@ const FilterForm = () => {
     </div>
   );
 };
+
 export default FilterForm;

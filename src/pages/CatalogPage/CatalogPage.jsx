@@ -9,8 +9,7 @@ export default function CatalogPage() {
       <Header />
       <section>
         <FilterForm />
-        <CarList />
-        <LoadMoreBtn />
+        <CarList /> <LoadMoreBtn />
       </section>
     </>
   );

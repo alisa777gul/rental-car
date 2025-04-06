@@ -10,8 +10,10 @@ const carSlice = createSlice({
     setPage: (state, action) => {
       state.page = action.payload;
     },
-    setFilters: (state, action) => {
-      state.filters = action.payload; // Update filters in state
+    clearState: (state) => {
+      state.carList = [];
+      state.page = null;
+      state.totalPages = null;
     },
   },
   extraReducers: (builder) => {
@@ -28,6 +30,7 @@ const carSlice = createSlice({
         state.totalCars = totalCars;
         state.totalPages = totalPages;
       })
+
       .addCase(fetchCars.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
@@ -35,5 +38,5 @@ const carSlice = createSlice({
   },
 });
 
-export const { setPage, setFilters } = carSlice.actions;
+export const { setPage, clearState } = carSlice.actions;
 export default carSlice.reducer;
