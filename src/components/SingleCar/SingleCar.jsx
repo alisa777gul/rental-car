@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchCarById } from "../../redux/cars/operations/fetchCarById";
 import styles from "./SingleCar.module.css";
 import { useParams } from "react-router";
-import { selectSingleCar } from "../../redux/cars/selectors";
+import { selectLoading, selectSingleCar } from "../../redux/cars/selectors";
 import { extractCity, extractCountry } from "../../utils/getCityAndCountry";
 import icons from "../../assets/sprite.svg";
 import { formatNumber } from "../../utils/formatNumber";
@@ -16,19 +16,21 @@ export default function SingleCar() {
   const city = extractCity(car?.address);
   const country = extractCountry(car?.address);
   const carId = car?.id.slice(0, 7);
+  const loading = useSelector(selectLoading);
 
   useEffect(() => {
     dispatch(fetchCarById(id));
   }, [dispatch, id]);
 
-  if (!car) return <p>No car data available.</p>;
+  if (!car && !loading)
+    return <p className={styles.noData}> No car data available.</p>;
 
   return (
     <div className={styles.cont}>
       <div className={styles.imgNform}>
         <img
           src={car?.img}
-          alt={`${car?.brand}+${car?.model}`}
+          alt={`${car?.brand} ${car?.model}`}
           className={styles.img}
         />
         <BookingForm />
@@ -56,11 +58,12 @@ export default function SingleCar() {
           <p className={styles.price}>${car?.rentalPrice}</p>
           <p className={styles.description}>{car?.description}</p>
         </div>
+
         <div className={styles.secInfo}>
           <div className={styles.conditions}>
             <p className={styles.rentalTitle}>Rental Conditions: </p>
             <ul className={styles.condList}>
-              {car.rentalConditions.map((condition, index) => (
+              {car?.rentalConditions?.map((condition, index) => (
                 <li key={index} className={styles.condition}>
                   <svg width={16} height={16}>
                     <use href={icons + "#icon-check-circle"}></use>
@@ -70,6 +73,7 @@ export default function SingleCar() {
               ))}
             </ul>
           </div>
+
           <div className={styles.specifications}>
             <p className={styles.specifTitle}>Car Specifications: </p>
             <ul className={styles.specifList}>
@@ -77,37 +81,38 @@ export default function SingleCar() {
                 <svg width={16} height={16}>
                   <use href={icons + "#icon-calendar"}></use>
                 </svg>
-                Year: {car.year}
+                Year: {car?.year}
               </li>
               <li className={styles.specification}>
                 <svg width={16} height={16}>
                   <use href={icons + "#icon-car"}></use>
                 </svg>
-                Type: {car.type}
-              </li>{" "}
+                Type: {car?.type}
+              </li>
               <li className={styles.specification}>
                 <svg width={16} height={16}>
                   <use href={icons + "#icon-fuel"}></use>
                 </svg>
-                Fuel Consumption: {car.fuelConsumption}
-              </li>{" "}
+                Fuel Consumption: {car?.fuelConsumption}
+              </li>
               <li className={styles.specification}>
                 <svg width={16} height={16}>
                   <use href={icons + "#icon-gear"}></use>
                 </svg>
-                Engine Size: {car.engineSize}
+                Engine Size: {car?.engineSize}
               </li>
             </ul>
           </div>
+
           <div className={styles.accessories}>
             <p className={styles.accessTitle}>
               Accessories and functionalities:
             </p>
             <ul className={styles.accessList}>
-              {car.accessories.map((access, index) => (
+              {car?.accessories?.map((access, index) => (
                 <li key={index} className={styles.access}>
                   <svg width={16} height={16}>
-                    <use href={icons + "#icon-check-circle"}></use>
+                    <use href={icons + "#icon-check-circle"} />
                   </svg>
                   {access}
                 </li>

@@ -1,0 +1,7 @@
+.loader p {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--color-blue-button);
+  margin-top: 200px;
+}

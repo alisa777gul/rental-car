@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { clearState } from "../../redux/cars/slice";
 import { fetchBrands } from "../../redux/cars/operations/fetchBrands";
-import { Formik } from "formik";
+import { Field, Formik } from "formik";
 import { useSearchParams } from "react-router-dom";
 import { setFilter } from "../../redux/filters/slice";
 import styles from "./FilterForm.module.css";
@@ -90,13 +90,14 @@ const FilterForm = () => {
               </select>
             </div>
 
-            <div className={styles.price}>
+            <div className={styles.priceDiv}>
               <label htmlFor="rentalPrice">Price / 1 hour</label>
               <select
                 name="rentalPrice"
                 id="rentalPrice"
                 value={values.rentalPrice}
                 onChange={handleChange}
+                className={styles.price}
               >
                 <option value="" defaultValue={0}>
                   Choose a price
@@ -108,28 +109,28 @@ const FilterForm = () => {
                 ))}
               </select>
             </div>
-            <div>
+            <div className={styles.mileageDiv}>
               <label htmlFor="mileage">Car Mileage</label>
               <div className={styles.mileageRange}>
-                <div className={styles.from}>
-                  <label htmlFor="minMileage">From</label>
-                  <input
+                <div>
+                  <Field
                     type="number"
                     name="minMileage"
                     id="minMileage"
                     value={values.minMileage}
                     onChange={handleChange}
+                    className={styles.from}
                   />
                 </div>
 
-                <div className={styles.to}>
-                  <label htmlFor="maxMileage">To</label>
-                  <input
+                <div>
+                  <Field
                     type="number"
                     name="maxMileage"
                     id="maxMileage"
                     value={values.maxMileage}
                     onChange={handleChange}
+                    className={styles.to}
                   />
                 </div>
               </div>

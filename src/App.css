@@ -19,6 +19,11 @@
 
   --color-blue-button: #3470ff;
   --color-blue-hover: #0b44cd;
+
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+  }
 }
 
 html {

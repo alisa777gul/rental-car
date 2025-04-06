@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchCars } from "../../redux/cars/operations/fetchCars";
-import { selectCarList } from "../../redux/cars/selectors";
+import { selectCarList, selectLoading } from "../../redux/cars/selectors";
 import CarCard from "../CarCard/CarCard";
 import styles from "./CarList.module.css";
 import { useSearchParams } from "react-router-dom";
@@ -13,11 +13,12 @@ export default function CarList() {
   const dispatch = useDispatch();
   const cars = useSelector(selectCarList);
   const [searchParams, setSearchParams] = useSearchParams();
-  const didFetch = useRef();
+  const isFetched = useRef();
+  const loading = useSelector(selectLoading);
 
   useEffect(() => {
-    if (didFetch.current || cars.length > 0) return;
-    didFetch.current = true;
+    if (isFetched.current || cars.length > 0) return;
+    isFetched.current = true;
     const params = Object.fromEntries(searchParams.entries());
     setSearchParams(buildSearchParams(params));
 
@@ -28,6 +29,10 @@ export default function CarList() {
       })
     );
   }, [dispatch, cars.length, searchParams, setSearchParams]);
+
+  if (cars.length === 0 && !loading) {
+    return <p className={styles.noCars}>No cars found.</p>;
+  }
 
   return (
     <div>

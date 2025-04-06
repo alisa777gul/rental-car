@@ -9,8 +9,10 @@ const BookingForm = () => {
 
   return (
     <div className={styles.formContainer}>
-      <h2>Book your car now</h2>
-      <p>Stay connected! We are always ready to help you.</p>
+      <h2 className={styles.title}>Book your car now</h2>
+      <p className={styles.text}>
+        Stay connected! We are always ready to help you.
+      </p>
 
       <Formik
         initialValues={{
@@ -23,44 +25,55 @@ const BookingForm = () => {
       >
         <Form className={styles.form}>
           <div className={styles.field}>
-            <label htmlFor="name">Name</label>
+            <label htmlFor="name" className={styles.label}>
+              Name
+            </label>
             <Field
               type="text"
               id="name"
               name="name"
-              placeholder="Your name"
+              placeholder="Name*"
               className={styles.input}
+              required
             />
           </div>
 
           <div className={styles.field}>
-            <label htmlFor="email">Email</label>
+            <label htmlFor="email" className={styles.label}>
+              Email
+            </label>
             <Field
               type="email"
               id="email"
               name="email"
-              placeholder="Your email"
+              placeholder="Email*"
               className={styles.input}
+              required
             />
           </div>
 
           <div className={styles.field}>
-            <label htmlFor="bookingDate">Booking Date</label>
+            <label htmlFor="bookingDate" className={styles.label}>
+              Booking Date
+            </label>
             <Field
               type="date"
               id="bookingDate"
               name="bookingDate"
+              placeholder="Booking date"
               className={styles.input}
             />
           </div>
 
           <div className={styles.field}>
-            <label htmlFor="comment">Comment</label>
+            <label htmlFor="comment" className={styles.label}>
+              Comment
+            </label>
             <Field
               as="textarea"
               id="comment"
               name="comment"
-              placeholder="Your comment"
+              placeholder="Comment"
               className={styles.textarea}
             />
           </div>

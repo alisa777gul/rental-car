@@ -23,6 +23,18 @@
     line-height: 1.25;
     color: var(--color-main);
   }
+
+  select {
+    border-radius: 12px;
+    padding: 12px 16px;
+    background: var(--color-inputs);
+    border: none;
+    font-family: var(--font-family);
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 1.25;
+    color: var(--color-main);
+  }
 }
 
 .brandDiv {
@@ -39,4 +51,76 @@
   padding: 12px 16px;
   background: var(--color-inputs);
   width: 204px;
+}
+
+.priceDiv {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.price {
+  width: 196px;
+}
+
+.mileageDiv {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.mileageRange {
+  display: flex;
+  flex-direction: row;
+}
+
+.from {
+  border: none;
+  background: var(--color-inputs);
+  border-right: 1px solid var(--color-gray-light);
+  border-radius: 12px 0 0 12px;
+  outline: none;
+  width: 160px;
+  height: 44px;
+  padding: 12px 0 12px 24px;
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.25;
+  color: var(--color-main);
+}
+
+.to {
+  border: none;
+  background: var(--color-inputs);
+
+  border-radius: 0 12px 12px 0;
+  outline: none;
+
+  width: 160px;
+  height: 44px;
+  padding: 12px 0 12px 24px;
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.25;
+  color: var(--color-main);
+}
+
+.btn {
+  margin-top: auto;
+  border-radius: 12px;
+  padding: 12px 51px;
+  font-family: var(--font-family);
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 1.25;
+  color: var(--color-white);
+  border: none;
+  background-color: var(--color-blue-button);
+  transition: background-color 0.4s ease-out;
+}
+
+.btn:hover,
+.btn:focus {
+  background-color: var(--color-blue-hover);
 }

@@ -48,3 +48,8 @@ section {
   padding: 0 120px;
   margin-bottom: 60px;
 }
+
+input:hover,
+textarea:hover {
+  outline: none;
+}
