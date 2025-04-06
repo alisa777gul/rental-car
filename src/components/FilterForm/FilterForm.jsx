@@ -9,6 +9,7 @@ import { setFilter } from "../../redux/filters/slice";
 import styles from "./FilterForm.module.css";
 import { fetchCars } from "../../redux/cars/operations/fetchCars";
 import { buildSearchParams } from "../../utils/buildParams";
+import iziToast from "izitoast";
 
 const FilterForm = () => {
   const [brands, setBrands] = useState([]);
@@ -17,17 +18,15 @@ const FilterForm = () => {
   const [searchParams, setSearchParams] = useSearchParams();
 
   useEffect(() => {
-    const fetchBrandData = async () => {
+    (async () => {
       try {
         const data = await fetchBrands();
         setBrands(data);
       } catch (err) {
         console.error("Error fetching brands: ", err);
       }
-    };
-
-    fetchBrandData();
-  }, [dispatch, searchParams]);
+    })();
+  }, []);
 
   useEffect(() => {
     if (searchParams) {
@@ -35,23 +34,26 @@ const FilterForm = () => {
     }
   }, [searchParams, dispatch]);
 
-  const handleSubmit = (values, action) => {
-    const rentalPrice = values.rentalPrice;
-    const brand = values.brand;
-    const from = Number(values.minMileage);
-    const to = Number(values.maxMileage);
+  const handleSubmit = async (values, action) => {
+    const { rentalPrice, brand, minMileage, maxMileage } = values;
+    const from = Number(minMileage);
+    const to = Number(maxMileage);
 
-    const newParams = {
-      ...values,
-      page: 1,
-      limit: 12,
-    };
+    if (from && to && from > to) {
+      iziToast.error({
+        title: "Error",
+        message: "Please, provide valid values for mileage.",
+        position: "topRight",
+      });
+      return;
+    }
 
-    const newSearchParams = buildSearchParams(newParams);
+    const params = { ...values, page: 1, limit: 12 };
+    const newSearchParams = buildSearchParams(params);
 
-    setSearchParams(buildSearchParams(values));
+    setSearchParams(newSearchParams);
     dispatch(clearState());
-    dispatch(fetchCars(newSearchParams));
+    await dispatch(fetchCars(newSearchParams));
     dispatch(setFilter(newSearchParams));
 
     action.resetForm();

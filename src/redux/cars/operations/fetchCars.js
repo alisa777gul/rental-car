@@ -17,7 +17,7 @@ export const fetchCars = createAsyncThunk(
 
       return { ...response.data };
     } catch (error) {
-      iziToast.success({
+      iziToast.error({
         title: "Error",
         message: "Oops...Try again!",
         position: "topRight",

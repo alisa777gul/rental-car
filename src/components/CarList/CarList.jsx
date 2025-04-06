@@ -17,7 +17,7 @@ export default function CarList() {
   const loading = useSelector(selectLoading);
 
   useEffect(() => {
-    if (isFetched.current || cars.length > 0) return;
+    if (isFetched.current) return;
     isFetched.current = true;
     const params = Object.fromEntries(searchParams.entries());
     setSearchParams(buildSearchParams(params));
@@ -28,7 +28,7 @@ export default function CarList() {
         limit: 12,
       })
     );
-  }, [dispatch, cars.length, searchParams, setSearchParams]);
+  }, [dispatch, searchParams, setSearchParams]);
 
   if (cars.length === 0 && !loading) {
     return <p className={styles.noCars}>No cars found.</p>;
