@@ -92,19 +92,10 @@ const FilterForm = () => {
                         zIndex: 1300, // убедись, что выше, если скрыто — наоборот уменьши
                       },
                     },
-                    // anchorOrigin: {
-                    //   vertical: "top",
-                    //   horizontal: "left",
-                    // },
-                    // transformOrigin: {
-                    //   vertical: "top",
-                    //   horizontal: "left",
-                    // },
                     disablePortal: true,
                     getContentAnchorEl: null,
                   }}
                 >
-                  <MenuItem value="">Choose a brand</MenuItem>
                   {brands.map((brand) => (
                     <MenuItem key={brand} value={brand}>
                       {brand}
@@ -112,42 +103,39 @@ const FilterForm = () => {
                   ))}
                 </Select>
               </FormControl>
-
-              {/* <select
-                name="brand"
-                id="brand"
-                value={values.brand}
-                onChange={handleChange}
-                className={styles.brand}
-              >
-                <option value="">Choose a brand</option>
-                {brands.map((brand) => (
-                  <option key={brand} value={brand}>
-                    {brand}
-                  </option>
-                ))}
-              </select> */}
             </div>
 
             <div className={styles.priceDiv}>
-              <label htmlFor="rentalPrice">Price / 1 hour</label>
+              <FormControl fullWidth>
+                <label htmlFor="rentalPrice">Price / 1 hour</label>
 
-              <select
-                name="rentalPrice"
-                id="rentalPrice"
-                value={values.rentalPrice}
-                onChange={handleChange}
-                className={styles.price}
-              >
-                <option value="" defaultValue={0}>
-                  Choose a price
-                </option>
-                {prices.map((price) => (
-                  <option key={price} value={price}>
-                    {price}
-                  </option>
-                ))}
-              </select>
+                <Select
+                  labelId="rentalPrice"
+                  id="rentalPrice"
+                  name="rentalPrice"
+                  value={values.rentalPrice}
+                  onChange={handleChange}
+                  className={styles.price}
+                  displayEmpty
+                  MenuProps={{
+                    PaperProps: {
+                      style: {
+                        maxHeight: 188,
+                        zIndex: 1300,
+                        maxWidth: 196,
+                      },
+                    },
+                    disablePortal: true,
+                    getContentAnchorEl: null,
+                  }}
+                >
+                  {prices.map((price) => (
+                    <MenuItem key={price} value={price}>
+                      {price}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
             </div>
             <div className={styles.mileageDiv}>
               <label htmlFor="mileage">Car Mileage</label>

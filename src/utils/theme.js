@@ -9,11 +9,18 @@ const theme = createTheme({
           borderRadius: "12px",
           backgroundColor: "var(--color-inputs)",
           padding: "12px 16px",
-          width: "204px",
+          width: "auto",
           maxHeight: "44px",
           outline: "none",
           fontFamily: "var(--font-family)",
           marginTop: "8px",
+          fontWeight: "500",
+          fontSize: "16px",
+          lineHeight: "1.25",
+          color: "var(--color-main)",
+        },
+        select: {
+          padding: "0px !important",
         },
       },
     },
@@ -21,6 +28,38 @@ const theme = createTheme({
       styleOverrides: {
         notchedOutline: {
           border: "none",
+        },
+      },
+    },
+    MuiMenu: {
+      styleOverrides: {
+        paper: {
+          backgroundColor: "var(--color-white)",
+          borderRadius: "0px 0px 12px 12px",
+          boxShadow: "0px 4px 36px rgba(0,0,0,0.2)",
+          maxHeight: "272px",
+          marginTop: "4px",
+        },
+        list: {
+          padding: "14px 18px 14px 0",
+        },
+      },
+    },
+    MuiMenuItem: {
+      styleOverrides: {
+        root: {
+          fontFamily: "var(--font-family)",
+          fontSize: "16px",
+          fontWeight: "500",
+          lineHeight: "1.25",
+          color: "var(--color-grey)",
+          padding: "8px 14px",
+          "&:hover": {
+            backgroundColor: "#f0f0f0",
+          },
+          "&.Mui-selected": {
+            backgroundColor: "#e0f7fa",
+          },
         },
       },
     },

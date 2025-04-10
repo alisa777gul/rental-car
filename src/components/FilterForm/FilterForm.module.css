@@ -50,7 +50,7 @@
   border: none;
   padding: 12px 16px;
   background: var(--color-inputs);
-  width: 204px;
+  width: 204px !important;
   outline: none;
   max-height: 44px;
 }
@@ -61,7 +61,7 @@
   gap: 8px;
 }
 .price {
-  width: 196px;
+  width: 196px !important;
 }
 
 .mileageDiv {
