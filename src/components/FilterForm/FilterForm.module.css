@@ -34,6 +34,7 @@
     font-size: 16px;
     line-height: 1.25;
     color: var(--color-main);
+    max-height: 44px;
   }
 }
 
@@ -42,7 +43,6 @@
   flex-direction: column;
   justify-content: center;
   align-items: start;
-  gap: 8px;
 }
 
 .brand {
@@ -51,6 +51,8 @@
   padding: 12px 16px;
   background: var(--color-inputs);
   width: 204px;
+  outline: none;
+  max-height: 44px;
 }
 
 .priceDiv {

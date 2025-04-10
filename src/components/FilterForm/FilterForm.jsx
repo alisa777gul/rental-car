@@ -10,6 +10,7 @@ import styles from "./FilterForm.module.css";
 import { fetchCars } from "../../redux/cars/operations/fetchCars";
 import { buildSearchParams } from "../../utils/buildParams";
 import iziToast from "izitoast";
+import { MenuItem, Select, FormControl } from "@mui/material";
 
 const FilterForm = () => {
   const [brands, setBrands] = useState([]);
@@ -73,8 +74,46 @@ const FilterForm = () => {
         {({ values, handleChange, handleSubmit, isSubmitting }) => (
           <form onSubmit={handleSubmit} className={styles.form}>
             <div className={styles.brandDiv}>
-              <label htmlFor="brand">Car brand</label>
-              <select
+              <FormControl fullWidth>
+                {" "}
+                <label htmlFor="brand">Car brand</label>
+                <Select
+                  labelId="brand"
+                  id="brand"
+                  name="brand"
+                  value={values.brand}
+                  onChange={handleChange}
+                  className={styles.brand}
+                  displayEmpty
+                  MenuProps={{
+                    PaperProps: {
+                      style: {
+                        maxHeight: 272,
+                        zIndex: 1300, // убедись, что выше, если скрыто — наоборот уменьши
+                      },
+                    },
+                    // anchorOrigin: {
+                    //   vertical: "top",
+                    //   horizontal: "left",
+                    // },
+                    // transformOrigin: {
+                    //   vertical: "top",
+                    //   horizontal: "left",
+                    // },
+                    disablePortal: true,
+                    getContentAnchorEl: null,
+                  }}
+                >
+                  <MenuItem value="">Choose a brand</MenuItem>
+                  {brands.map((brand) => (
+                    <MenuItem key={brand} value={brand}>
+                      {brand}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+
+              {/* <select
                 name="brand"
                 id="brand"
                 value={values.brand}
@@ -87,11 +126,12 @@ const FilterForm = () => {
                     {brand}
                   </option>
                 ))}
-              </select>
+              </select> */}
             </div>
 
             <div className={styles.priceDiv}>
               <label htmlFor="rentalPrice">Price / 1 hour</label>
+
               <select
                 name="rentalPrice"
                 id="rentalPrice"
