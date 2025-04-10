@@ -85,11 +85,17 @@ const FilterForm = () => {
                   onChange={handleChange}
                   className={styles.brand}
                   displayEmpty
+                  renderValue={(selected) => {
+                    if (selected === "") {
+                      return <p>Choose a brand</p>;
+                    }
+                    return selected;
+                  }}
                   MenuProps={{
                     PaperProps: {
                       style: {
                         maxHeight: 272,
-                        zIndex: 1300, // убедись, что выше, если скрыто — наоборот уменьши
+                        zIndex: 1300,
                       },
                     },
                     disablePortal: true,
@@ -117,6 +123,12 @@ const FilterForm = () => {
                   onChange={handleChange}
                   className={styles.price}
                   displayEmpty
+                  renderValue={(selected) => {
+                    if (selected === "") {
+                      return <p>Choose a price</p>;
+                    }
+                    return selected;
+                  }}
                   MenuProps={{
                     PaperProps: {
                       style: {
