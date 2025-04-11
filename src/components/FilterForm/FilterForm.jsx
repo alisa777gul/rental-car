@@ -73,82 +73,92 @@ const FilterForm = () => {
       >
         {({ values, handleChange, handleSubmit, isSubmitting }) => (
           <form onSubmit={handleSubmit} className={styles.form}>
-            <div className={styles.brandDiv}>
-              <FormControl fullWidth>
-                {" "}
-                <label htmlFor="brand">Car brand</label>
-                <Select
-                  labelId="brand"
-                  id="brand"
-                  name="brand"
-                  value={values.brand}
-                  onChange={handleChange}
-                  className={styles.brand}
-                  displayEmpty
-                  renderValue={(selected) => {
-                    if (selected === "") {
-                      return <p>Choose a brand</p>;
-                    }
-                    return selected;
-                  }}
-                  MenuProps={{
-                    PaperProps: {
-                      style: {
-                        maxHeight: 272,
-                        zIndex: 1300,
-                      },
-                    },
-                    disablePortal: true,
-                    getContentAnchorEl: null,
-                  }}
-                >
-                  {brands.map((brand) => (
-                    <MenuItem key={brand} value={brand}>
-                      {brand}
-                    </MenuItem>
-                  ))}
-                </Select>
-              </FormControl>
-            </div>
+            <Field name="brand">
+              {({ field, form }) => (
+                <div className={styles.brandDiv}>
+                  <FormControl fullWidth>
+                    <label htmlFor="brand">Car brand</label>
+                    <Select
+                      labelId="brand"
+                      id="brand"
+                      name="brand"
+                      value={values.brand}
+                      onChange={handleChange}
+                      className={styles.brand}
+                      displayEmpty
+                      renderValue={(selected) =>
+                        selected === "" ? <p>Choose a brand</p> : selected
+                      }
+                      MenuProps={{
+                        disableScrollLock: true,
+                        PaperProps: {
+                          style: {
+                            maxHeight: 272,
+                            zIndex: 1300,
+                            overflowY: "auto",
+                            maxWidth: 204,
+                          },
+                        },
+                        disablePortal: true,
+                        getContentAnchorEl: null,
+                      }}
+                    >
+                      {brands.map((brand) => (
+                        <MenuItem key={brand} value={brand}>
+                          {brand}
+                        </MenuItem>
+                      ))}
+                    </Select>
+                  </FormControl>
+                </div>
+              )}
+            </Field>
 
-            <div className={styles.priceDiv}>
-              <FormControl fullWidth>
-                <label htmlFor="rentalPrice">Price / 1 hour</label>
+            <Field name="rentalPrice">
+              {({ field, form }) => (
+                <div className={styles.priceDiv}>
+                  <FormControl fullWidth>
+                    <label htmlFor="rentalPrice">Price / 1 hour</label>
+                    <Select
+                      labelId="rentalPrice"
+                      id="rentalPrice"
+                      name="rentalPrice"
+                      value={field.value}
+                      onChange={form.handleChange}
+                      className={styles.price}
+                      displayEmpty
+                      renderValue={(selected) =>
+                        selected === "" ? (
+                          <p>Choose a price</p>
+                        ) : (
+                          `To ${selected}$`
+                        )
+                      }
+                      MenuProps={{
+                        disableScrollLock: true,
+                        PaperProps: {
+                          style: {
+                            maxHeight: 188,
+                            zIndex: 1300,
+                            overflowY: "auto",
+                            maxWidth: 196,
+                          },
+                        },
+                        disablePortal: true,
+                        getContentAnchorEl: null,
+                      }}
+                    >
+                      {prices.map((price) => (
+                        <MenuItem key={price} value={price}>
+                          {price}
+                        </MenuItem>
+                      ))}
+                    </Select>
+                  </FormControl>
+                </div>
+              )}
+            </Field>
 
-                <Select
-                  labelId="rentalPrice"
-                  id="rentalPrice"
-                  name="rentalPrice"
-                  value={values.rentalPrice}
-                  onChange={handleChange}
-                  className={styles.price}
-                  displayEmpty
-                  renderValue={(selected) => {
-                    if (selected === "") {
-                      return <p>Choose a price</p>;
-                    }
-                    return selected;
-                  }}
-                  MenuProps={{
-                    PaperProps: {
-                      style: {
-                        maxHeight: 188,
-                        zIndex: 1300,
-                        maxWidth: 196,
-                      },
-                    },
-                    disablePortal: true,
-                    getContentAnchorEl: null,
-                  }}
-                >
-                  {prices.map((price) => (
-                    <MenuItem key={price} value={price}>
-                      {price}
-                    </MenuItem>
-                  ))}
-                </Select>
-              </FormControl>
-            </div>
             <div className={styles.mileageDiv}>
               <label htmlFor="mileage">Car Mileage</label>
               <div className={styles.mileageRange}>

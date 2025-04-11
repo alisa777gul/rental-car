@@ -2,18 +2,18 @@
   background: rgba(0, 0, 0, 0.2) url("../../assets/hero.webp") no-repeat top
     left;
   width: 100%;
-  /* max-width: 1440px; */
-  height: auto;
+  min-height: 100vh;
+
   background-size: cover;
   background-position: center;
   padding: 436px 0 60px 0;
-  height: 100vh;
 
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   overflow: hidden;
+  margin-top: 4px;
 }
 
 @media only screen and (min-device-pixel-ratio: 2),

@@ -17,7 +17,7 @@ export default function CarList() {
   const loading = useSelector(selectLoading);
 
   useEffect(() => {
-    if (isFetched.current) return;
+    if (cars.length > 0 || isFetched.current) return;
     isFetched.current = true;
     const params = Object.fromEntries(searchParams.entries());
     setSearchParams(buildSearchParams(params));

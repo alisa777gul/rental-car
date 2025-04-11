@@ -1,5 +1,4 @@
 .cont {
-  margin-top: 80px;
   margin-bottom: 56px;
 }
 
@@ -8,13 +7,16 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  margin: 0 auto;
   gap: 16px;
+  max-width: 924px;
 
   label {
     font-weight: 400;
     font-size: 12px;
     line-height: 1.33333;
     color: var(--color-grey);
+    max-width: 100px;
   }
   option {
     font-family: var(--font-family);
