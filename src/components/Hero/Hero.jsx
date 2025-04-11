@@ -3,7 +3,7 @@ import styles from "./Hero.module.css";
 
 export default function Hero() {
   return (
-    <section className={styles.hero}>
+    <div className={styles.hero}>
       <h1 className={styles.title}>Find your perfect rental car</h1>
       <p className={styles.text}>
         Reliable and budget-friendly rentals for any journey
@@ -11,6 +11,6 @@ export default function Hero() {
       <Link to="/catalog" className={styles.link}>
         View Catalog
       </Link>
-    </section>
+    </div>
   );
 }
