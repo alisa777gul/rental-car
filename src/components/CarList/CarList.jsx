@@ -6,8 +6,6 @@ import CarCard from "../CarCard/CarCard";
 import styles from "./CarList.module.css";
 import { useSearchParams } from "react-router-dom";
 import { buildSearchParams } from "../../utils/buildParams";
-// import { clearState, setPage } from "../../redux/cars/slice";
-// import { setFilter } from "../../redux/filters/slice";
 
 export default function CarList() {
   const dispatch = useDispatch();

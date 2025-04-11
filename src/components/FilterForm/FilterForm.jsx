@@ -60,6 +60,19 @@ const FilterForm = () => {
     action.resetForm();
   };
 
+  const clearForm = (setFieldValue) => {
+    const emptyParams = searchParams.size === 0;
+    setFieldValue("brand", "");
+    setFieldValue("rentalPrice", "");
+    setFieldValue("minMileage", "");
+    setFieldValue("maxMileage", "");
+    setSearchParams({});
+    if (!emptyParams) {
+      dispatch(clearState());
+      dispatch(fetchCars({ page: 1, limit: 12 }));
+    }
+  };
+
   return (
     <div className={styles.cont}>
       <Formik
@@ -71,7 +84,13 @@ const FilterForm = () => {
         }}
         onSubmit={handleSubmit}
       >
-        {({ values, handleChange, handleSubmit, isSubmitting }) => (
+        {({
+          values,
+          handleChange,
+          handleSubmit,
+          isSubmitting,
+          setFieldValue,
+        }) => (
           <form onSubmit={handleSubmit} className={styles.form}>
             <Field name="brand">
               {({ field, form }) => (
@@ -113,7 +132,6 @@ const FilterForm = () => {
                 </div>
               )}
             </Field>
-
             <Field name="rentalPrice">
               {({ field, form }) => (
                 <div className={styles.priceDiv}>
@@ -158,7 +176,6 @@ const FilterForm = () => {
                 </div>
               )}
             </Field>
-
             <div className={styles.mileageDiv}>
               <label htmlFor="mileage">Car Mileage</label>
               <div className={styles.mileageRange}>
@@ -186,14 +203,22 @@ const FilterForm = () => {
                   />
                 </div>
               </div>
-            </div>
-
+            </div>{" "}
             <button
               type="submit"
               disabled={isSubmitting}
               className={styles.btn}
             >
               Search
+            </button>{" "}
+            <button
+              type="button"
+              className={styles.cancel}
+              onClick={() => {
+                clearForm(setFieldValue);
+              }}
+            >
+              Cancel
             </button>
           </form>
         )}

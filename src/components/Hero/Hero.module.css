@@ -1,6 +1,14 @@
 .hero {
-  background: rgba(0, 0, 0, 0.2) url("../../assets/hero.webp") no-repeat top
-    left;
+  background-image: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.2),
+      rgba(0, 0, 0, 0.2)
+    ),
+    image-set(
+      url("../../assets/hero.webp") 1x,
+      url("../../assets/hero@2x.webp") 2x
+    );
+
   width: 100%;
   min-height: 100vh;
 

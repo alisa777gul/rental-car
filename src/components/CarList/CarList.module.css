@@ -8,8 +8,6 @@
   margin-bottom: 80px;
   width: 100%;
   min-width: 1200px;
-  flex: 1 1 auto;
-  align-self: stretch;
 }
 
 .noCars {
