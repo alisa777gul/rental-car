@@ -88,7 +88,7 @@
   outline: none;
   width: 160px;
   height: 44px;
-  padding: 12px 0 12px 24px;
+  padding: 12px 0 12px 66px;
   font-family: var(--font-family);
   font-weight: 500;
   font-size: 16px;
@@ -105,7 +105,7 @@
 
   width: 160px;
   height: 44px;
-  padding: 12px 0 12px 24px;
+  padding: 12px 0 12px 46px;
   font-family: var(--font-family);
   font-weight: 500;
   font-size: 16px;
@@ -143,4 +143,31 @@
 .cancel:hover,
 .cancel:focus {
   background-color: rgb(177, 35, 35);
+}
+
+.from::placeholder,
+.to::placeholder {
+  color: transparent;
+}
+
+.ps {
+  position: relative;
+}
+.ps::after {
+  content: "From";
+  position: absolute;
+  bottom: 12px;
+  left: 24px;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.25;
+}
+.ps::before {
+  content: "To";
+  position: absolute;
+  bottom: 12px;
+  left: 184px;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.25;
 }

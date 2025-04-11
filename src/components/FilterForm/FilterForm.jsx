@@ -13,6 +13,7 @@ import iziToast from "izitoast";
 import { MenuItem, Select, FormControl } from "@mui/material";
 import icons from "../../assets/sprite.svg";
 import ArrowSvg from "../ArrowSvg/ArrowSvg";
+import { formatNumberWithCommas } from "../../utils/formatWithCommas";
 
 const FilterForm = () => {
   const [brands, setBrands] = useState([]);
@@ -75,16 +76,14 @@ const FilterForm = () => {
   };
 
   const clearForm = (setFieldValue) => {
-    const emptyParams = searchParams.size === 0;
     setFieldValue("brand", "");
     setFieldValue("rentalPrice", "");
     setFieldValue("minMileage", "");
     setFieldValue("maxMileage", "");
     setSearchParams({});
-    if (!emptyParams) {
-      dispatch(clearState());
-      dispatch(fetchCars({ page: 1, limit: 12 }));
-    }
+
+    dispatch(clearState());
+    dispatch(fetchCars({ page: 1, limit: 12 }));
   };
 
   return (
@@ -197,38 +196,43 @@ const FilterForm = () => {
             <div className={styles.mileageDiv}>
               <label htmlFor="mileage">Car Mileage</label>
               <div className={styles.mileageRange}>
-                <div>
+                <div className={styles.ps}>
                   <Field
-                    type="number"
+                    type="text"
                     name="minMileage"
                     id="minMileage"
-                    value={values.minMileage}
-                    onChange={handleChange}
+                    value={formatNumberWithCommas(values.minMileage)}
+                    onChange={(e) => {
+                      const rawValue = e.target.value.replace(/,/g, "");
+                      handleChange(e);
+                      setFieldValue("minMileage", rawValue);
+                    }}
                     className={styles.from}
                     placeholder="From"
                   />
                 </div>
-
-                <div>
-                  <Field
-                    type="number"
-                    name="maxMileage"
-                    id="maxMileage"
-                    value={values.maxMileage}
-                    onChange={handleChange}
-                    className={styles.to}
-                    placeholder="To"
-                  />
-                </div>
+                <Field
+                  type="text"
+                  name="maxMileage"
+                  id="maxMileage"
+                  value={formatNumberWithCommas(values.maxMileage)}
+                  onChange={(e) => {
+                    const rawValue = e.target.value.replace(/,/g, "");
+                    handleChange(e);
+                    setFieldValue("maxMileage", rawValue);
+                  }}
+                  className={styles.to}
+                  placeholder="To"
+                />
               </div>
-            </div>{" "}
+            </div>
             <button
               type="submit"
               disabled={isSubmitting}
               className={styles.btn}
             >
               Search
-            </button>{" "}
+            </button>
             <button
               type="button"
               className={styles.cancel}
