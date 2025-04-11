@@ -45,6 +45,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: start;
+  gap: 8px;
 }
 
 .brand {
@@ -60,6 +61,8 @@
 .priceDiv {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: start;
   gap: 8px;
 }
 .price {

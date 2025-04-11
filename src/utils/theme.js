@@ -10,14 +10,15 @@ const theme = createTheme({
           backgroundColor: "var(--color-inputs)",
           padding: "12px 16px",
           width: "auto",
-          maxHeight: "44px",
+
           outline: "none",
           fontFamily: "var(--font-family)",
-          marginTop: "8px",
+
           fontWeight: "500",
           fontSize: "16px",
           lineHeight: "1.25",
           color: "var(--color-main)",
+          maxHeight: "44px",
         },
         select: {
           padding: "0px !important",

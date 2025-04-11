@@ -92,11 +92,11 @@ const FilterForm = () => {
           setFieldValue,
         }) => (
           <form onSubmit={handleSubmit} className={styles.form}>
-            <Field name="brand">
-              {({ field, form }) => (
-                <div className={styles.brandDiv}>
+            <div className={styles.brandDiv}>
+              <label htmlFor="brand">Car brand</label>
+              <Field name="brand">
+                {({ field, form }) => (
                   <FormControl fullWidth>
-                    <label htmlFor="brand">Car brand</label>
                     <Select
                       labelId="brand"
                       id="brand"
@@ -129,14 +129,14 @@ const FilterForm = () => {
                       ))}
                     </Select>
                   </FormControl>
-                </div>
-              )}
-            </Field>
-            <Field name="rentalPrice">
-              {({ field, form }) => (
-                <div className={styles.priceDiv}>
+                )}
+              </Field>{" "}
+            </div>
+            <div className={styles.priceDiv}>
+              <label htmlFor="rentalPrice">Price / 1 hour</label>
+              <Field name="rentalPrice">
+                {({ field, form }) => (
                   <FormControl fullWidth>
-                    <label htmlFor="rentalPrice">Price / 1 hour</label>
                     <Select
                       labelId="rentalPrice"
                       id="rentalPrice"
@@ -173,9 +173,9 @@ const FilterForm = () => {
                       ))}
                     </Select>
                   </FormControl>
-                </div>
-              )}
-            </Field>
+                )}
+              </Field>
+            </div>
             <div className={styles.mileageDiv}>
               <label htmlFor="mileage">Car Mileage</label>
               <div className={styles.mileageRange}>
