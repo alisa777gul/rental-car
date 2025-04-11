@@ -40,7 +40,7 @@ const theme = createTheme({
           boxShadow: "0px 4px 36px rgba(0,0,0,0.2)",
           maxHeight: "272px",
           marginTop: "4px",
-          padding: "14px 0",
+          padding: "14px",
         },
         list: {
           padding: 0,
@@ -61,6 +61,10 @@ const theme = createTheme({
             backgroundColor: "transparent",
           },
           "&.Mui-selected": {
+            color: "var(--color-main)",
+            backgroundColor: "transparent",
+          },
+          "&.Mui-selected:hover": {
             color: "var(--color-main)",
             backgroundColor: "transparent",
           },

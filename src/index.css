@@ -28,26 +28,6 @@ input::-webkit-inner-spin-button {
   -webkit-appearance: none;
 }
 
-.MuiMenu-paper {
-  overflow-y: auto;
-}
-
-.MuiMenu-paper::-webkit-scrollbar {
-  width: 8px;
-}
-
-.MuiMenu-paper::-webkit-scrollbar-thumb {
-  background-color: var(--color-grey);
-  border-radius: 10px;
-}
-
-.MuiMenu-paper::-webkit-scrollbar-track {
-  background: transparent;
-  border-radius: 10px;
-  margin-top: 12px;
-  margin-bottom: 12px;
-}
-
 ::-webkit-scrollbar {
   width: 8px;
 }
@@ -156,4 +136,25 @@ section {
 input:hover,
 textarea:hover {
   outline: none;
+}
+
+.MuiMenu-paper {
+  overflow-y: auto;
+}
+
+.MuiMenu-paper::-webkit-scrollbar {
+  width: 8px;
+}
+
+.MuiMenu-paper::-webkit-scrollbar-thumb {
+  background-color: var(--color-grey);
+  border-radius: 10px;
+  height: 12px;
+}
+
+.MuiMenu-paper::-webkit-scrollbar-track {
+  background: var(--color-gray-light);
+  border-radius: 10px;
+  margin-top: 12px;
+  margin-bottom: 12px;
 }

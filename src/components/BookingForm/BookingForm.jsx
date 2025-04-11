@@ -32,59 +32,51 @@ const BookingForm = () => {
         onSubmit={handleSubmit}
       >
         <Form className={styles.form}>
-          <div className={styles.field}>
-            <label htmlFor="name" className={styles.label}>
-              Name
-            </label>
-            <Field
-              type="text"
-              id="name"
-              name="name"
-              placeholder="Name*"
-              className={styles.input}
-              required
-            />
-          </div>
+          <label htmlFor="name" className={styles.label}>
+            Name
+          </label>
+          <Field
+            type="text"
+            id="name"
+            name="name"
+            placeholder="Name*"
+            className={styles.input}
+            required
+          />
 
-          <div className={styles.field}>
-            <label htmlFor="email" className={styles.label}>
-              Email
-            </label>
-            <Field
-              type="email"
-              id="email"
-              name="email"
-              placeholder="Email*"
-              className={styles.input}
-              required
-            />
-          </div>
+          <label htmlFor="email" className={styles.label}>
+            Email
+          </label>
+          <Field
+            type="email"
+            id="email"
+            name="email"
+            placeholder="Email*"
+            className={styles.input}
+            required
+          />
 
-          <div className={styles.field}>
-            <label htmlFor="bookingDate" className={styles.label}>
-              Booking Date
-            </label>
-            <Field
-              type="date"
-              id="bookingDate"
-              name="bookingDate"
-              placeholder="Booking date"
-              className={styles.input}
-            />
-          </div>
+          <label htmlFor="bookingDate" className={styles.label}>
+            Booking Date
+          </label>
+          <Field
+            type="date"
+            id="bookingDate"
+            name="bookingDate"
+            placeholder="Booking date"
+            className={styles.input}
+          />
 
-          <div className={styles.field}>
-            <label htmlFor="comment" className={styles.label}>
-              Comment
-            </label>
-            <Field
-              as="textarea"
-              id="comment"
-              name="comment"
-              placeholder="Comment"
-              className={styles.textarea}
-            />
-          </div>
+          <label htmlFor="comment" className={styles.label}>
+            Comment
+          </label>
+          <Field
+            as="textarea"
+            id="comment"
+            name="comment"
+            placeholder="Comment"
+            className={styles.textarea}
+          />
 
           <button type="submit" className={styles.submitButton}>
             Send
