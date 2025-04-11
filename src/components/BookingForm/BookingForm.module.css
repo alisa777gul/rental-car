@@ -37,6 +37,16 @@
   color: var(--color-blue-button);
 }
 
+.input:hover,
+.textarea:hover,
+.input:active,
+.textarea:active,
+.input:focus,
+.textarea:focus {
+  border: none;
+  outline: none;
+}
+
 .submitButton {
   border-radius: 12px;
   padding: 12px 51px;

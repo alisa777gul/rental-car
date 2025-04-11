@@ -134,7 +134,12 @@ section {
 }
 
 input:hover,
-textarea:hover {
+textarea:hover,
+input:active,
+textarea:active,
+input:focus,
+textarea:focus {
+  border: none;
   outline: none;
 }
 
