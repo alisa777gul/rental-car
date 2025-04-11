@@ -1,0 +1,12 @@
+.icon {
+  display: inline-block;
+  stroke-width: 0;
+  stroke: currentColor;
+  fill: var(--color-main);
+  cursor: pointer;
+  transition: transform 0.4s ease-out;
+}
+
+.rotated {
+  transform: rotate(180deg);
+}

@@ -11,12 +11,26 @@ import { fetchCars } from "../../redux/cars/operations/fetchCars";
 import { buildSearchParams } from "../../utils/buildParams";
 import iziToast from "izitoast";
 import { MenuItem, Select, FormControl } from "@mui/material";
+import icons from "../../assets/sprite.svg";
+import ArrowSvg from "../ArrowSvg/ArrowSvg";
 
 const FilterForm = () => {
   const [brands, setBrands] = useState([]);
   const prices = Array.from({ length: 17 }, (_, i) => (i + 3) * 10);
   const dispatch = useDispatch();
   const [searchParams, setSearchParams] = useSearchParams();
+  const [isBrandOpen, setIsBrandOpen] = useState(false);
+  const [isPriceOpen, setIsPriceOpen] = useState(false);
+
+  const ArrowIconBrand = React.useMemo(
+    () => () => <ArrowSvg isOpen={isBrandOpen} />,
+    [isBrandOpen]
+  );
+
+  const ArrowIconPrice = React.useMemo(
+    () => () => <ArrowSvg isOpen={isPriceOpen} />,
+    [isPriceOpen]
+  );
 
   useEffect(() => {
     (async () => {
@@ -119,8 +133,10 @@ const FilterForm = () => {
                           },
                         },
                         disablePortal: true,
-                        getContentAnchorEl: null,
                       }}
+                      onOpen={() => setIsBrandOpen(true)}
+                      onClose={() => setIsBrandOpen(false)}
+                      IconComponent={ArrowIconBrand}
                     >
                       {brands.map((brand) => (
                         <MenuItem key={brand} value={brand}>
@@ -163,8 +179,10 @@ const FilterForm = () => {
                           },
                         },
                         disablePortal: true,
-                        getContentAnchorEl: null,
                       }}
+                      onOpen={() => setIsPriceOpen(true)}
+                      onClose={() => setIsPriceOpen(false)}
+                      IconComponent={ArrowIconPrice}
                     >
                       {prices.map((price) => (
                         <MenuItem key={price} value={price}>

@@ -13,7 +13,7 @@ const theme = createTheme({
 
           outline: "none",
           fontFamily: "var(--font-family)",
-
+          cursor: "pointer",
           fontWeight: "500",
           fontSize: "16px",
           lineHeight: "1.25",
