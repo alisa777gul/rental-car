@@ -71,6 +71,45 @@ const theme = createTheme({
         },
       },
     },
+    MuiPickersDay: {
+      styleOverrides: {
+        root: {
+          fontFamily: "var(--second-family)",
+          fontWeight: "400",
+          textAlign: "center",
+          fontSize: "14px",
+          color: "var(--color-main)",
+          "&.Mui-selected": {
+            backgroundColor: "var(--color-blue-button)",
+            color: "var(--color-white)",
+          },
+          "&:hover": {
+            backgroundColor: "var(--color-blue-button)",
+            color: "var(--color-white)",
+          },
+        },
+      },
+    },
+
+    MuiInputBase: {
+      styleOverrides: {
+        input: {
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        },
+      },
+    },
+
+    MuiTextField: {
+      styleOverrides: {
+        root: {
+          marginBottom: "16px",
+          display: "flex",
+          justifyContent: "center",
+        },
+      },
+    },
   },
 });
 
