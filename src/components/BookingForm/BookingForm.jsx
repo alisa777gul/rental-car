@@ -3,38 +3,21 @@ import { Formik, Field, Form } from "formik";
 import styles from "./BookingForm.module.css";
 import "izitoast/dist/css/iziToast.min.css";
 import iziToast from "izitoast";
-import { LocalizationProvider } from "@mui/x-date-pickers";
-import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
-import { DatePicker } from "@mui/x-date-pickers";
-import { enGB } from "date-fns/locale";
-import { format } from "date-fns";
+import DatePickerField from "../DatePickerField/DatePickerField.jsx";
 
 const BookingForm = () => {
-  const customLocale = {
-    ...enGB,
-    localize: {
-      ...enGB.localize,
-      day: (n) => {
-        const days = ["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"];
-        return days[n];
-      },
-    },
-  };
-
   const handleSubmit = (values, action) => {
-    iziToast.success({
-      title: "Success",
-      message: "We will call you ASAP!",
-      position: "topRight",
-    });
+    try {
+      iziToast.success({
+        title: "Success",
+        message: "We will call you ASAP!",
+        position: "topRight",
+      });
 
-    action.resetForm();
-  };
-
-  // Функция для форматирования дня недели
-  const formatWeekDay = (date) => {
-    const dayOfWeek = format(date, "EEE", { locale: customLocale });
-    return dayOfWeek;
+      action.resetForm();
+    } catch (e) {
+      iziToast.error(e);
+    }
   };
 
   return (
@@ -52,7 +35,7 @@ const BookingForm = () => {
         }}
         onSubmit={handleSubmit}
       >
-        {({ values, setFieldValue }) => (
+        {() => (
           <Form className={styles.form}>
             <label htmlFor="name" className={styles.label}>
               Name
@@ -81,51 +64,7 @@ const BookingForm = () => {
             <label htmlFor="bookingDate" className={styles.label}>
               Booking Date
             </label>
-            <LocalizationProvider
-              dateAdapter={AdapterDateFns}
-              locale={customLocale}
-            >
-              <DatePicker
-                value={values.bookingDate}
-                format="dd.MM.yyyy"
-                onChange={(newValue) => setFieldValue("bookingDate", newValue)} // Обновление значения через Formik
-                minDate={new Date()}
-                className={styles.input}
-                formatWeekDay={formatWeekDay}
-                slotProps={{
-                  calendarHeader: {
-                    sx: {
-                      position: "relative",
-                      "& .MuiPickersArrowSwitcher-root": {
-                        width: 0,
-                      },
-                      "& .MuiPickersCalendarHeader-labelContainer": {
-                        margin: "auto",
-                      },
-                      "& .MuiIconButton-edgeEnd": {
-                        position: "absolute",
-                        left: 0,
-                        top: 0,
-                        bottom: 0,
-                      },
-                      "& .MuiIconButton-edgeStart": {
-                        position: "absolute",
-                        right: 0,
-                        top: 0,
-                        bottom: 0,
-                      },
-                    },
-                  },
-
-                  leftArrowIcon: {
-                    sx: { color: "var(--color-blue-button)", fontSize: "24px" },
-                  },
-                  rightArrowIcon: {
-                    sx: { color: "var(--color-blue-button)", fontSize: "24px" },
-                  },
-                }}
-              />
-            </LocalizationProvider>
+            <DatePickerField name="bookingDate" />
 
             <label htmlFor="comment" className={styles.label}>
               Comment
