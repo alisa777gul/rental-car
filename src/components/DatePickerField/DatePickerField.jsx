@@ -22,6 +22,7 @@ const DatePickerField = ({ name }) => {
         <div className="react-custom">
           <div className="react-datepicker__head">
             <button
+              type="button"
               className="react-datepicker__navigation react-datepicker__navigation--previous"
               onClick={decreaseMonth}
               aria-label="Previous Month"
@@ -37,6 +38,7 @@ const DatePickerField = ({ name }) => {
               {monthDate.getFullYear()}
             </span>
             <button
+              type="button"
               className="react-datepicker__navigation react-datepicker__navigation--next"
               onClick={increaseMonth}
               aria-label="Next Month"
