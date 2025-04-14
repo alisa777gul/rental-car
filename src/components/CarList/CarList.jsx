@@ -26,7 +26,7 @@ export default function CarList() {
         limit: 12,
       })
     );
-  }, [dispatch, searchParams, setSearchParams]);
+  }, [dispatch, searchParams, setSearchParams, cars.length]);
 
   if (cars.length === 0 && !loading) {
     return <p className={styles.noCars}>No cars found.</p>;
