@@ -1,6 +1,8 @@
 import styles from "./Header.module.css";
 import icons from "../../assets/sprite.svg";
 import { NavLink, Link } from "react-router-dom";
+import { IoHomeSharp } from "react-icons/io5";
+import { FaCar } from "react-icons/fa6";
 
 export default function Header() {
   return (
@@ -18,7 +20,10 @@ export default function Header() {
           }
           end
         >
-          Home
+          <span className={styles.icon}>
+            <IoHomeSharp size={24} />
+          </span>
+          <span className={styles.text}> Home</span>
         </NavLink>
         <NavLink
           to="/catalog"
@@ -27,7 +32,10 @@ export default function Header() {
           }
           end
         >
-          Catalog
+          <span className={styles.icon}>
+            <FaCar size={24} />
+          </span>
+          <span className={styles.text}> Catalog</span>
         </NavLink>
       </nav>
     </header>
