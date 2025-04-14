@@ -1,20 +1,19 @@
 # Rental Car
 
-## Короткий опис
+## Short Description
 
-**Rental Car** — це SPA-додаток для перегляду та бронювання автомобілів в оренду. Побудований за допомогою React, Redux і React Router, додаток дозволяє зручно шукати, переглядати деталі авто та додавати улюблені моделі. Використано Formik для роботи з формами та iziToast для повідомлень.
+**Rental Car** is a SPA (Single Page Application) for browsing and booking rental cars. Built using React, Redux, and React Router, the application allows users to conveniently search, view car details, and add favorite models. It uses Formik for form handling and iziToast for event notifications.
 
-## Основні функції
+## Main Features
 
-- Перегляд каталогу автомобілів
-- Фільтрація за маркою, ціною, пробігом
-- Детальний опис кожного авто
-- Додавання/видалення з обраного
-- Валідація форм з Formik
-- Повідомлення про події за допомогою iziToast
+- Browse the car catalog
+- Filter cars by brand, price, and mileage
+- View detailed descriptions of each car
+- Add/remove cars from favorites
+- Form validation using Formik
+- Event notifications using iziToast
 
-
-## Технології
+## Technologies
 
 - **React**
 - **Redux Toolkit**
@@ -24,43 +23,43 @@
 - **Axios**
 - **CSS Modules**
 
-## Установка
+## Installation
 
-1. Клонувати репозиторій:
+1. Clone the repository:
 
    ```bash
    git clone https://github.com/alisa777gul/rental-car.git
    ```
 
-2. Перейти до проєкту:
+2. Navigate to the project directory:
 
    ```bash
    cd rental-car
    ```
 
-3. Встановити залежності:
+3. Install the dependencies:
 
    ```bash
    npm install
    ```
 
-4. Запустити проєкт:
+4. Start the project:
 
    ```bash
-   npm start
+   npm run dev
    ```
 
 ## Використання
 
-Відкрийте в браузері:  
+Open in your browser:
 [http://localhost:5173](http://localhost:5173)
 
-- Перейдіть до каталогу автомобілів
-- Відфільтруйте за потрібними параметрами
-- Додайте авто до обраного
-- Отримуйте повідомлення через iziToast
+- Navigate to the car catalog
+- Apply filters based on brand, price, and mileage
+- Add cars to your favorites list
+- Receive event notifications via iziToast
 
-## Автор
+## Author
 
-**Аліса Гуляєва**  
+**Alisa Gulyayeva**  
 Junior Front-End Developer
