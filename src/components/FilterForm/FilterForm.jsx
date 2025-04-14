@@ -226,22 +226,25 @@ const FilterForm = () => {
                 />
               </div>
             </div>
-            <button
-              type="submit"
-              disabled={isSubmitting}
-              className={styles.btn}
-            >
-              Search
-            </button>
-            <button
-              type="button"
-              className={styles.cancel}
-              onClick={() => {
-                clearForm(setFieldValue);
-              }}
-            >
-              Cancel
-            </button>
+            <div className={styles.buttons}>
+              {" "}
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className={styles.btn}
+              >
+                Search
+              </button>
+              <button
+                type="button"
+                className={styles.cancel}
+                onClick={() => {
+                  clearForm(setFieldValue);
+                }}
+              >
+                Cancel
+              </button>
+            </div>
           </form>
         )}
       </Formik>
