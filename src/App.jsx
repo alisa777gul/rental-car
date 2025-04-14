@@ -6,6 +6,7 @@ import Loader from "./components/Loader/Loader.jsx";
 const HomePage = lazy(() => import("./pages/HomePage/HomePage.jsx"));
 const CatalogPage = lazy(() => import("./pages/CatalogPage/CatalogPage.jsx"));
 const CarPage = lazy(() => import("./pages/CarPage/CarPage.jsx"));
+const ErrorPage = lazy(() => import("./pages/ErrorPage/ErrorPage.jsx"));
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/catalog" element={<CatalogPage />} />
           <Route path="/catalog/:id" element={<CarPage />} />
+          <Route path="*" element={<ErrorPage />} />
         </Routes>
       </Suspense>
     </>

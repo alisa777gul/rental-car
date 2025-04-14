@@ -8,6 +8,8 @@ import { extractCity, extractCountry } from "../../utils/getCityAndCountry";
 import icons from "../../assets/sprite.svg";
 import { formatNumber } from "../../utils/formatNumber";
 import BookingForm from "../BookingForm/BookingForm";
+import Loader from "../Loader/Loader";
+import { clearSingleCar } from "../../redux/cars/slice";
 
 export default function SingleCar() {
   const dispatch = useDispatch();
@@ -20,10 +22,18 @@ export default function SingleCar() {
 
   useEffect(() => {
     dispatch(fetchCarById(id));
+    return () => {
+      dispatch(clearSingleCar(id));
+    };
   }, [dispatch, id]);
 
-  if (!car && !loading)
-    return <p className={styles.noData}> No car data available.</p>;
+  if (!car && loading) {
+    return <Loader />;
+  }
+
+  if (!car && !loading) {
+    return <p className={styles.noData}>No car data available.</p>;
+  }
 
   return (
     <div className={styles.cont}>

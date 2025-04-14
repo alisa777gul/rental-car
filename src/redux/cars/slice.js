@@ -16,6 +16,9 @@ const carSlice = createSlice({
       state.page = null;
       state.totalPages = null;
     },
+    clearSingleCar: (state) => {
+      state.singleCar = null;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -54,5 +57,5 @@ const carSlice = createSlice({
   },
 });
 
-export const { setPage, clearState } = carSlice.actions;
+export const { setPage, clearState, clearSingleCar } = carSlice.actions;
 export default carSlice.reducer;
