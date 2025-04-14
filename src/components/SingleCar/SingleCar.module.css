@@ -1,55 +1,99 @@
 .cont {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
-  align-items: start;
-  gap: 72px;
-  margin-top: 80px;
+  align-items: center;
+  gap: 56px;
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+    gap: 64px;
+    align-items: start;
+  }
+  @media (min-width: 1024px) {
+    gap: 72px;
+  }
 }
 .imgNform {
   display: flex;
   flex-direction: column;
-  gap: 40px;
+  gap: 32px;
   justify-content: center;
   align-items: center;
-  max-width: 640px;
+  max-width: 320px;
+
+  @media (min-width: 768px) {
+    gap: 40px;
+    max-width: 427px;
+  }
+  @media (min-width: 1440px) {
+    gap: 40px;
+    max-width: 640px;
+  }
 }
 .img {
-  width: 640px;
-  height: 512px;
+  width: 100%;
+  height: 256px;
   border-radius: 19px;
+  @media (min-width: 768px) {
+    width: 427px;
+    height: 342px;
+  }
+  @media (min-width: 1440px) {
+    width: 640px;
+    height: 512px;
+  }
 }
 .info {
-  max-width: 488px;
   display: flex;
   flex-direction: column;
   justify-content: start;
   align-items: start;
-  gap: 68px;
+  gap: 44px;
+  max-width: 320px;
+  @media (min-width: 768px) {
+    gap: 68px;
+    width: 427px;
+  }
+
+  @media (min-width: 1024px) {
+    max-width: 488px;
+  }
 }
 
 .nameNid {
   display: flex;
-  flex-direction: row;
-  justify-content: start;
-  align-items: center;
-  gap: 16px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+  gap: 8px;
   margin-bottom: 8px;
+
+  @media (min-width: 1280px) {
+    gap: 16px;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+  }
 }
 .name {
-  font-family: var(--font-family);
   font-weight: 600;
-  font-size: 24px;
-  line-height: 1.33333;
-  text-align: center;
-  color: var(--color-main);
+  font-size: 20px;
+
+  @media (min-width: 768px) {
+    line-height: 1.33333;
+    font-size: 24px;
+  }
 }
 .id {
-  font-family: var(--font-family);
   font-weight: 500;
-  font-size: 16px;
-  line-height: 1.25;
+  font-size: 12px;
+
   color: var(--color-grey);
+
+  @media (min-width: 768px) {
+    font-size: 16px;
+  }
 }
 .locationNmileage {
   display: flex;
@@ -57,12 +101,13 @@
   justify-content: start;
   align-items: center;
   gap: 16px;
-  font-family: var(--font-family);
   font-weight: 500;
-  font-size: 16px;
-  line-height: 1.25;
-  color: var(--color-main);
+  font-size: 14px;
   margin-bottom: 16px;
+
+  @media (min-width: 1024px) {
+    font-size: 16px;
+  }
 }
 .location {
   display: flex;
@@ -73,113 +118,74 @@
 }
 
 .price {
-  font-family: var(--font-family);
   font-weight: 600;
-  font-size: 24px;
-  line-height: 1.33333;
+  font-size: 22px;
+
   color: var(--color-blue-button);
   text-align: left;
-  margin-bottom: 32px;
+  margin-bottom: 20px;
+  @media (min-width: 768px) {
+    font-size: 24px;
+    line-height: 1.33333;
+    margin-bottom: 32px;
+  }
 }
 .description {
-  font-family: var(--font-family);
   font-weight: 500;
-  font-size: 16px;
-  line-height: 1.25;
-  color: var(--color-main);
+  font-size: 14px;
   text-align: left;
+  @media (min-width: 768px) {
+    font-size: 16px;
+  }
 }
 .secInfo {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: start;
-  gap: 110px;
+  gap: 52px;
+  @media (min-width: 768px) {
+    gap: 80px;
+  }
+  @media (min-width: 1024px) {
+    gap: 110px;
+  }
 }
-.conditions {
-  display: flex;
-  flex-direction: column;
-}
-.rentalTitle {
-  font-family: var(--font-family);
-  font-weight: 600;
-  font-size: 20px;
-  line-height: 1.2;
-  color: var(--color-main);
-  text-align: left;
-  margin-bottom: 20px;
-}
-.condList {
-  font-family: var(--font-family);
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 1.25;
-  color: var(--color-main);
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-.condition {
-  display: flex;
-  flex-direction: row;
-  justify-content: start;
-  align-items: center;
-  gap: 8px;
-}
+.conditions,
+.accessories,
 .specifications {
   display: flex;
   flex-direction: column;
 }
-.specifTitle {
-  font-family: var(--font-family);
-  font-weight: 600;
-  font-size: 20px;
-  line-height: 1.2;
-  color: var(--color-main);
-  text-align: left;
-  margin-bottom: 20px;
-}
-.specifList {
-  font-family: var(--font-family);
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 1.25;
-  color: var(--color-main);
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-.specification {
-  display: flex;
-  flex-direction: row;
-  justify-content: start;
-  align-items: center;
-  gap: 8px;
-}
-.accessories {
-  display: flex;
-  flex-direction: column;
-}
+
+.rentalTitle,
+.specifTitle,
 .accessTitle {
-  font-family: var(--font-family);
   font-weight: 600;
-  font-size: 20px;
+  font-style: 18px;
   line-height: 1.2;
-  color: var(--color-main);
   text-align: left;
   margin-bottom: 20px;
-}
-.accessList {
-  font-family: var(--font-family);
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 1.25;
-  color: var(--color-main);
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
+  @media (min-width: 768px) {
+    font-size: 20px;
+  }
 }
 
+.condList,
+.specifList,
+.accessList {
+  font-weight: 500;
+  font-size: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  @media (min-width: 768px) {
+    font-size: 16px;
+    gap: 16px;
+  }
+}
+.condition,
+.specification,
 .access {
   display: flex;
   flex-direction: row;

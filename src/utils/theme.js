@@ -10,14 +10,10 @@ const theme = createTheme({
           backgroundColor: "var(--color-inputs)",
           padding: "12px 16px",
           width: "auto",
-
           outline: "none",
-          fontFamily: "var(--font-family)",
           cursor: "pointer",
           fontWeight: "500",
           fontSize: "16px",
-          lineHeight: "1.25",
-          color: "var(--color-main)",
           maxHeight: "44px",
         },
         select: {
@@ -50,10 +46,8 @@ const theme = createTheme({
     MuiMenuItem: {
       styleOverrides: {
         root: {
-          fontFamily: "var(--font-family)",
           fontSize: "16px",
           fontWeight: "500",
-          lineHeight: "1.25",
           color: "var(--color-grey)",
           padding: "8px 14px",
           "&:hover": {
@@ -78,7 +72,6 @@ const theme = createTheme({
           fontWeight: "400",
           textAlign: "center",
           fontSize: "14px",
-          color: "var(--color-main)",
           "&.Mui-selected": {
             backgroundColor: "var(--color-blue-button)",
             color: "var(--color-white)",
