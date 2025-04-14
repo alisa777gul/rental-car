@@ -6,6 +6,8 @@ import { extractCity, extractCountry } from "../../utils/getCityAndCountry";
 import { useState } from "react";
 
 export default function CarCard({ car }) {
+  const [imageLoaded, setImageLoaded] = useState(false);
+
   const city = extractCity(car?.address);
   const country = extractCountry(car?.address);
   const [isFav, setIsFav] = useState(() => {
@@ -30,10 +32,14 @@ export default function CarCard({ car }) {
   return (
     <div className={styles.card}>
       <div className={styles.imgCont}>
+        {!imageLoaded && <div className={styles.imgPlaceholder}></div>}
         <img
           src={car.img}
           alt={`${car.brand} ${car.model} ${car.year}`}
-          className={styles.photo}
+          className={`${styles.photo} ${
+            imageLoaded ? styles.visible : styles.hidden
+          }`}
+          onLoad={() => setImageLoaded(true)}
         />
         <button type="button" className={styles.like} onClick={handleFav}>
           {isFav ? (

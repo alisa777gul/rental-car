@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCarById } from "../../redux/cars/operations/fetchCarById";
 import styles from "./SingleCar.module.css";
@@ -19,6 +19,7 @@ export default function SingleCar() {
   const country = extractCountry(car?.address);
   const carId = car?.id.slice(0, 7);
   const loading = useSelector(selectLoading);
+  const [imageLoaded, setImageLoaded] = useState(false);
 
   useEffect(() => {
     dispatch(fetchCarById(id));
@@ -38,11 +39,17 @@ export default function SingleCar() {
   return (
     <div className={styles.cont}>
       <div className={styles.imgNform}>
-        <img
-          src={car?.img}
-          alt={`${car?.brand} ${car?.model}`}
-          className={styles.img}
-        />
+        <div className={styles.imgCont}>
+          {!imageLoaded && <div className={styles.imgPlaceholder}></div>}{" "}
+          <img
+            src={car?.img}
+            alt={`${car?.brand} ${car?.model}`}
+            className={`${styles.img} ${
+              imageLoaded ? styles.visible : styles.hidden
+            }`}
+            onLoad={() => setImageLoaded(true)}
+          />
+        </div>
         <BookingForm />
       </div>
       <div className={styles.info}>
