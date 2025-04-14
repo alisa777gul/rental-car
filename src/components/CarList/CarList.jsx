@@ -33,7 +33,7 @@ export default function CarList() {
   }
 
   return (
-    <div>
+    <div className={styles.cont}>
       <ul className={styles.list}>
         {cars.map((car) => (
           <li key={car.id}>
