@@ -90,10 +90,8 @@
   width: 160px;
   height: 44px;
   padding: 12px 0 12px 66px;
-  font-family: var(--font-family);
   font-weight: 500;
   font-size: 16px;
-  line-height: 1.25;
   color: var(--color-main);
 }
 
@@ -107,10 +105,8 @@
   width: 160px;
   height: 44px;
   padding: 12px 0 12px 46px;
-  font-family: var(--font-family);
   font-weight: 500;
   font-size: 16px;
-  line-height: 1.25;
   color: var(--color-main);
 }
 
