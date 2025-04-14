@@ -10,57 +10,69 @@
     );
 
   width: 100%;
-  min-height: 100vh;
 
   background-size: cover;
   background-position: center;
-  padding: 436px 0 60px 0;
-
+  padding: 470px 20px 40px 20px;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   overflow: hidden;
-  margin-top: 4px;
-}
+  margin-top: 2px;
 
-@media only screen and (min-device-pixel-ratio: 2),
-  only screen and (min-resolution: 192dpi) {
-  .hero {
-    background-image: url("../../assets/hero@2x.webp");
+  @media (min-width: 768px) {
+    margin-top: 4px;
+    padding: 436px 0 60px 0;
+  }
+  @media (min-width: 1024px) {
+    margin-top: 4px;
   }
 }
 
 .title {
-  font-family: var(--font-family);
-  font-weight: 700;
-  font-size: 60px;
+  font-size: 40px;
   line-height: 1.2;
   text-align: center;
   color: var(--color-white);
-  margin-bottom: 16px;
+  margin-bottom: 8px;
+  @media (min-width: 768px) {
+    margin-bottom: 16px;
+    font-size: 56px;
+  }
+  @media (min-width: 1024px) {
+    font-size: 60px;
+  }
 }
 
 .text {
   font-family: var(--font-family);
   font-weight: 600;
-  font-size: 24px;
+  font-size: 20px;
   line-height: 1.33333;
   text-align: center;
   color: var(--color-white);
-  margin-bottom: 40px;
+  margin-bottom: 24px;
+
+  @media (min-width: 768px) {
+    font-size: 24px;
+    margin-bottom: 40px;
+  }
 }
 
 .link {
-  font-family: var(--font-family);
   font-weight: 600;
-  font-size: 16px;
-  line-height: 1.25;
+  font-size: 14px;
   color: var(--color-white);
   border-radius: 12px;
-  padding: 12px 88px;
+  padding: 12px 64px;
   background: var(--color-blue-button);
   transition: background-color 0.4s ease-out;
+  @media (min-width: 768px) {
+    padding: 12px 88px;
+    font-size: 16px;
+  }
 }
 
 .link:hover,

@@ -1,13 +1,16 @@
 .header {
-  padding: 24px 120px;
+  padding: 12px 20px;
   display: flex;
   flex-direction: row;
   width: 100%;
   justify-content: space-between;
   align-items: center;
-  min-width: 1440px;
   border-bottom: 1px solid var(--color-badges);
   background-color: var(--color-badges);
+
+  @media (min-width: 768px) {
+    padding: 24px 120px;
+  }
 }
 
 .logo {
@@ -18,21 +21,26 @@
 
 .navigation {
   display: flex;
-  gap: 32px;
+  gap: 16px;
   justify-content: center;
   align-items: center;
+  @media (min-width: 768px) {
+    gap: 32px;
+  }
 }
 
 .link {
   display: inline-block;
-  font-family: var(--font-family);
   font-weight: 500;
-  font-size: 16px;
-  line-height: 1.25;
+  font-size: 14px;
   text-align: center;
   color: var(--color-main);
-  min-width: 44px;
+
   transition: color 0.4s ease-out;
+  @media (min-width: 768px) {
+    min-width: 44px;
+    font-size: 16px;
+  }
 }
 
 .link:hover,
