@@ -49,7 +49,7 @@
    npm run dev
    ```
 
-## Використання
+## Usage
 
 Open in your browser:
 [http://localhost:5173](http://localhost:5173)
