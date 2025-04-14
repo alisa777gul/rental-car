@@ -21,6 +21,7 @@ const theme = createTheme({
         },
       },
     },
+
     MuiOutlinedInput: {
       styleOverrides: {
         notchedOutline: {
@@ -88,7 +89,7 @@ const theme = createTheme({
       styleOverrides: {
         input: {
           display: "flex",
-          justifyContent: "center",
+          justifyContent: "start",
           alignItems: "center",
         },
       },
