@@ -1,5 +1,5 @@
 .header {
-  padding: 24px 20px;
+  padding: 24px 32px;
   display: flex;
   flex-direction: row;
   width: 100%;
@@ -9,6 +9,9 @@
   background-color: var(--color-badges);
 
   @media (min-width: 768px) {
+    padding: 24px 60px;
+  }
+  @media (min-width: 1024px) {
     padding: 24px 120px;
   }
 }
