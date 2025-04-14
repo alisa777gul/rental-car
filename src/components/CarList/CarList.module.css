@@ -11,12 +11,12 @@
   gap: 40px;
   justify-content: center;
   align-items: center;
-  margin-bottom: 80px;
+  margin-bottom: 52px;
   max-width: 375px;
 
   @media (min-width: 768px) {
     gap: 56px;
-
+    margin-bottom: 80px;
     max-width: 720px;
     flex-direction: row;
     flex-wrap: wrap;
