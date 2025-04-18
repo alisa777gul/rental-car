@@ -7,11 +7,11 @@ import { FaCar } from "react-icons/fa6";
 export default function Header() {
   return (
     <header className={styles.header}>
-      <a className={styles.logo} href="/">
+      <Link className={styles.logo} href="/">
         <svg className={styles.icon} width={104} height={16}>
           <use href={icons + "#icon-logo"} />
         </svg>
-      </a>
+      </Link>
       <nav className={styles.navigation}>
         <NavLink
           to="/"
