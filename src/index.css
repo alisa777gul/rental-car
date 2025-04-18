@@ -10,6 +10,17 @@
   position: relative;
   width: 100%;
   margin: 0 auto;
+  width: 375px;
+
+  @media (min-width: 768px) {
+    width: 768px;
+  }
+  @media (min-width: 1024px) {
+    width: 1024px;
+  }
+  @media (min-width: 1440px) {
+    width: 1440px;
+  }
 }
 
 :root {
@@ -63,23 +74,13 @@ body {
   font-size: 16px;
   line-height: 1.25;
   padding: 0;
-  height: 100vh;
+
   margin: 0 auto;
   background-color: var(--color-white);
   color: var(--color-main);
-  width: 375px;
+
   box-sizing: border-box;
   min-height: fit-content;
-
-  @media (min-width: 768px) {
-    width: 768px;
-  }
-  @media (min-width: 1024px) {
-    width: 1024px;
-  }
-  @media (min-width: 1440px) {
-    width: 1440px;
-  }
 }
 
 html {
